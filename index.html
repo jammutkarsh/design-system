@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en" data-heading-prefix>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>utc-ds — Design System Showcase</title>
+  <meta name="description" content="A terminal-inspired design system for developer portfolios and project websites.">
+  <link rel="stylesheet" href="utc-ds.css">
+  <style>
+    /* Showcase-specific: section spacing & labels */
+    .showcase-section {
+      margin-bottom: var(--ds-space-16);
+    }
+    .showcase-label {
+      font-family: var(--ds-font-mono);
+      font-size: var(--ds-text-xs);
+      color: var(--ds-text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: var(--ds-tracking-wide);
+      margin-bottom: var(--ds-space-6);
+      display: block;
+    }
+    .showcase-label::before {
+      content: '// ';
+    }
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: var(--ds-space-2);
+      margin-bottom: var(--ds-space-4);
+    }
+    .swatch {
+      padding: var(--ds-space-3);
+      border-radius: var(--ds-radius);
+      font-family: var(--ds-font-mono);
+      font-size: var(--ds-text-xs);
+      border: 1px solid var(--ds-border);
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--ds-space-2);
+      align-items: center;
+      margin-bottom: var(--ds-space-4);
+    }
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--ds-space-2);
+      align-items: center;
+    }
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--ds-border-strong);
+      color: var(--ds-text-secondary);
+      font-family: var(--ds-font-mono);
+      font-size: var(--ds-text-sm);
+      padding: var(--ds-space-1) var(--ds-space-3);
+      cursor: pointer;
+      border-radius: var(--ds-radius-sm);
+      transition: all var(--ds-transition);
+    }
+    .theme-toggle:hover {
+      border-color: var(--ds-primary);
+      color: var(--ds-primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════════════════════ -->
+  <nav class="nav" id="main-nav">
+    <div class="nav-inner container">
+      <a href="#" class="nav-brand">utc-ds</a>
+      <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#typography" class="nav-link">Typography</a>
+        <span class="nav-sep">|</span>
+        <a href="#elements" class="nav-link">Elements</a>
+        <span class="nav-sep">|</span>
+        <a href="#components" class="nav-link">Components</a>
+        <span class="nav-sep">|</span>
+        <a href="#terminal" class="nav-link">Terminal</a>
+        <span class="nav-sep">|</span>
+        <a href="#footer-section" class="nav-link">Footer</a>
+        <span class="nav-sep">|</span>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light theme">◐ theme</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container-prose">
+
+    <!-- ═══════════════════════════════════════════════════════
+         HERO
+         ═══════════════════════════════════════════════════════ -->
+    <div class="showcase-section" style="margin-top: var(--ds-space-8);">
+      <h1>utc-ds</h1>
+      <p class="lead">A terminal-inspired design system for developer portfolios and project websites. Built with pure CSS, zero JavaScript dependencies, and a dark-first philosophy.</p>
+      <p>Inspired by <a href="https://planetscale.com/">PlanetScale</a>'s website aesthetic and <a href="https://github.com/charmbracelet/glow">charmbracelet/glow</a>'s terminal markdown rendering. Change <code>--ds-primary</code> and <code>--ds-secondary</code> to re-theme everything.</p>
+
+      <div class="meta" style="margin-top: var(--ds-space-4);">
+        <a href="#">Utkarsh Chourasia</a>
+        <span class="sep">|</span>
+        <a href="#" class="handle">@utc</a>
+        <span class="sep">|</span>
+        <time>2026</time>
+        <span class="sep">|</span>
+        <span class="badge badge-primary">Design System</span>
+      </div>
+    </div>
+
+    <hr class="dot-fill">
+
+    <!-- ═══════════════════════════════════════════════════════
+         COLORS
+         ═══════════════════════════════════════════════════════ -->
+    <section class="showcase-section" id="colors">
+      <span class="showcase-label">Color Palette</span>
+      <h2>Colors</h2>
+      <p>The entire palette derives from just two user-configurable variables: <code>--ds-primary</code> and <code>--ds-secondary</code>. All hover, muted, and subtle variants are auto-generated via <code>color-mix()</code> in oklch.</p>
+
+      <h3>Backgrounds</h3>
+      <div class="swatch-grid">
+        <div class="swatch" style="background: var(--ds-bg-primary); color: var(--ds-text-primary);">bg-primary</div>
+        <div class="swatch" style="background: var(--ds-bg-secondary); color: var(--ds-text-primary);">bg-secondary</div>
+        <div class="swatch" style="background: var(--ds-bg-tertiary); color: var(--ds-text-primary);">bg-tertiary</div>
+        <div class="swatch" style="background: var(--ds-bg-code); color: var(--ds-text-primary);">bg-code</div>
+        <div class="swatch" style="background: var(--ds-bg-elevated); color: var(--ds-text-primary);">bg-elevated</div>
+      </div>
+
+      <h3>Brand &amp; Semantic</h3>
+      <div class="swatch-grid">
+        <div class="swatch" style="background: var(--ds-primary); color: #fff;">primary</div>
+        <div class="swatch" style="background: var(--ds-primary-hover); color: #fff;">primary-hover</div>
+        <div class="swatch" style="background: var(--ds-primary-muted); color: var(--ds-primary);">primary-muted</div>
+        <div class="swatch" style="background: var(--ds-secondary); color: #fff;">secondary</div>
+        <div class="swatch" style="background: var(--ds-success); color: #fff;">success</div>
+        <div class="swatch" style="background: var(--ds-warning); color: #000;">warning</div>
+        <div class="swatch" style="background: var(--ds-danger); color: #fff;">danger</div>
+        <div class="swatch" style="background: var(--ds-purple); color: #fff;">purple</div>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- ═══════════════════════════════════════════════════════
+         TYPOGRAPHY
+         ═══════════════════════════════════════════════════════ -->
+    <section class="showcase-section" id="typography">
+      <span class="showcase-label">Typography</span>
+      <h2>Headings</h2>
+      <p>Headings use <strong>Inter</strong> with tight tracking. The <code>[data-heading-prefix]</code> attribute on this page adds markdown-style <code>#</code> prefixes. H2 gets a dashed bottom border like glow renders section headings.</p>
+
+      <h1>Heading Level 1</h1>
+      <h2>Heading Level 2</h2>
+      <h3>Heading Level 3</h3>
+      <h4>Heading Level 4</h4>
+      <h5>Heading Level 5</h5>
+      <h6>Heading Level 6</h6>
+
+      <h3>Body Text</h3>
+      <p>This is a standard paragraph set in Inter at 16px with a line-height of 1.7. The design system prioritizes <strong>readability</strong> and <em>clarity</em>. Text is constrained to a comfortable reading width of 48rem (768px).</p>
+      <p class="lead">This is a lead paragraph — used for introductions and summaries. It's slightly larger and uses the secondary text color for visual hierarchy.</p>
+      <p><small>This is small text, useful for fine print, footnotes, and disclaimers.</small></p>
+    </section>
+
+    <hr class="dot-fill">
+
+    <!-- ═══════════════════════════════════════════════════════
+         INLINE ELEMENTS
+         ═══════════════════════════════════════════════════════ -->
+    <section class="showcase-section" id="elements">
+      <span class="showcase-label">Inline Elements</span>
+      <h2>Inline Semantics</h2>
+      <p>
+        Here's <a href="#">a hyperlink</a> styled with the accent color.
+        Use <strong>strong</strong> for importance,
+        <em>emphasis</em> for stress,
+        <code>inline code</code> for technical terms,
+        <kbd>⌘</kbd> + <kbd>K</kbd> for keyboard shortcuts,
+        <mark>highlighted text</mark> for attention,
+        <del>deleted text</del> for corrections,
+        and <abbr title="Design System">DS</abbr> for abbreviations.
+        We also support <sup>superscripts</sup> and <sub>subscripts</sub>.
+      </p>
+    </section>
+
+    <hr>
+
+    <!-- ═══════════════════════════════════════════════════════
+         LISTS
+         ═══════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <span class="showcase-label">Lists</span>
+      <h2>Lists</h2>
+
+      <h3>Unordered List</h3>
+      <ul>
+        <li>Docker containers and orchestration</li>
+        <li>Terminal workflows and CLI tools
+          <ul>
+            <li>charmbracelet/bubbletea for TUIs</li>
+            <li>fzf for fuzzy finding</li>
+            <li>tmux for session management</li>
+          </ul>
+        </li>
+        <li>Linux system administration</li>
+        <li>Infrastructure as code</li>
+      </ul>
+
+      <h3>Ordered List</h3>
+      <ol>
+        <li>Write your Dockerfile</li>
+        <li>Build the image: <code>docker build -t myapp .</code></li>
+        <li>Run the container: <code>docker run -p 8080:80 myapp</code></li>
+        <li>Verify with <code>curl localhost:8080</code></li>
+      </ol>
+
+      <h3>Definition List</h3>
+      <dl>
+        <dt>Container</dt>
+        <dd>A lightweight, standalone package that includes everything needed to run a piece of software.</dd>
+        <dt>Image</dt>
+        <dd>A read-only template used to create containers. Built from a Dockerfile.</dd>
+        <dt>Volume</dt>
+        <dd>A persistent data storage mechanism that exists outside the container lifecycle.</dd>
+      </dl>
+    </section>
+
+    <hr class="ascii-hr">
+
+    <!-- ═══════════════════════════════════════════════════════
+         BLOCKQUOTES
+         ═══════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <span class="showcase-label">Blockquotes</span>
+      <h2>Blockquotes</h2>
+      <blockquote>
+        <p>"Simplicity is the ultimate sophistication." — Leonardo da Vinci</p>
+      </blockquote>
+      <blockquote>
+        <p>Nested blockquotes are supported too. The left border uses the primary accent color, making them stand out without being intrusive.</p>
+        <blockquote>
+          <p>This is a nested quote — useful for citing sources within commentary.</p>
+        </blockquote>
+      </blockquote>
+    </section>
+
+    <hr>
+
+    <!-- ═══════════════════════════════════════════════════════
+         HORIZONTAL RULES
+         ═══════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <span class="showcase-label">Horizontal Rules</span>
+      <h2>Horizontal Rules</h2>
+      <p>Three variants inspired by terminal rendering:</p>
+
+      <h4>Default (dashed)</h4>
+      <hr>
+
+      <h4>Dot Fill (PlanetScale-style)</h4>
+      <hr class="dot-fill">
+
+      <h4>ASCII (box-drawing characters)</h4>
+      <hr class="ascii-hr">
+    </section>
+
+    <hr>
+
+    <!-- ═══════════════════════════════════════════════════════
+         CODE
+         ═══════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <span class="showcase-label">Code</span>
+      <h2>Code Blocks</h2>
+      <p>Inline code uses <code>JetBrains Mono</code> with a subtle background. Block code gets a bordered container:</p>
+
+      <pre><code>#!/bin/bash
+# Deploy script for production
+set -euo pipefail
+
+echo "Building Docker image..."
+docker build -t myapp:latest .
+
+echo "Pushing to registry..."
+docker push registry.example.com/myapp:latest
+
+echo "Deploying to cluster..."
+kubectl rollout restart deployment/myapp
+
+echo "✓ Deployment complete"</code></pre>
+
+      <p>And here's a configuration example:</p>
+
+      <pre><code># docker-compose.yml
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      DATABASE_URL: postgres://db:5432/myapp
+    depends_on:
+      - db
+  db:
+    image: postgres:16
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:</code></pre>
+    </section>
+
+    <hr class="dot-fill">
+
+    <!-- ═══════════════════════════════════════════════════════
+         TABLES
+         ═══════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <span class="showcase-label">Tables</span>
+      <h2>Tables</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Command</th>
+            <th>Description</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>docker ps</code></td>
+            <td>List running containers</td>
+            <td><code>docker ps -a</code></td>
+          </tr>
+          <tr>
+            <td><code>docker build</code></td>
+            <td>Build an image from Dockerfile</td>
+            <td><code>docker build -t app .</code></td>
+          </tr>
+          <tr>
+            <td><code>docker exec</code></td>
+            <td>Execute command in container</td>
+            <td><code>docker exec -it app sh</code></td>
+          </tr>
+          <tr>
+            <td><code>docker logs</code></td>
+            <td>Fetch container logs</td>
+            <td><code>docker logs -f app</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Monospace Table</h3>
+      <table class="table-mono">
+        <thead>
+          <tr>
+            <th>Port</th>
+            <th>Service</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>22</td><td>SSH</td><td>●&nbsp;active</td></tr>
+          <tr><td>80</td><td>Nginx</td><td>●&nbsp;active</td></tr>
+          <tr><td>443</td><td>HTTPS</td><td>●&nbsp;active</td></tr>
+          <tr><td>5432</td><td>PostgreSQL</td><td>○&nbsp;stopped</td></tr>
+          <tr><td>6379</td><td>Redis</td><td>●&nbsp;active</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr>
+
+    <!-- ═══════════════════════════════════════════════════════
+         DETAILS / SUMMARY
+         ═══════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <span class="showcase-label">Interactive</span>
+      <h2>Details / Summary</h2>
+      <details>
+        <summary>Click to expand — System Requirements</summary>
+        <p>You'll need the following to get started:</p>
+        <ul>
+          <li>Docker 24.0 or later</li>
+          <li>Node.js 20 LTS</li>
+          <li>4GB RAM minimum</li>
+        </ul>
+      </details>
+      <details>
+        <summary>Environment Variables</summary>
+        <pre><code>DATABASE_URL=postgres://localhost:5432/myapp
+REDIS_URL=redis://localhost:6379
+PORT=8080
+NODE_ENV=production</code></pre>
+      </details>
+    </section>
+
+    <hr class="dot-fill">
+
+    <!-- ═══════════════════════════════════════════════════════
+         COMPONENTS
+         ═══════════════════════════════════════════════════════ -->
+    <section class="showcase-section" id="components">
+      <span class="showcase-label">Components</span>
+      <h2>Buttons</h2>
+      <div class="btn-row">
+        <button class="btn">Default</button>
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-ghost">Ghost</button>
+        <button class="btn btn-sm">Small</button>
+        <a href="#" class="btn">Link Button</a>
+        <a href="#" class="btn btn-primary arrow">Get Started</a>
+      </div>
+    </section>
+
+    <section class="showcase-section">
+      <h2>Badges</h2>
+      <div class="badge-row">
+        <span class="badge badge-primary">Primary</span>
+        <span class="badge badge-success">Success</span>
+        <span class="badge badge-info">Info</span>
+        <span class="badge badge-warning">Warning</span>
+        <span class="badge badge-danger">Danger</span>
+        <span class="badge badge-purple">Purple</span>
+      </div>
+      <p style="margin-top: var(--ds-space-4);">Used for category tags like PlanetScale's blog: <span class="badge badge-info">Engineering</span> <span class="badge badge-success">Product</span> <span class="badge badge-purple">Tutorials</span></p>
+    </section>
+
+    <section class="showcase-section">
+      <h2>Callouts</h2>
+      <div class="callout callout-note">
+        <div class="callout-title">Note</div>
+        <p>This design system uses <code>color-mix()</code> in oklch for derived colors. This is a Baseline 2023 feature supported in all modern browsers.</p>
+      </div>
+      <div class="callout callout-tip">
+        <div class="callout-title">Tip</div>
+        <p>Change only <code>--ds-primary</code> and <code>--ds-secondary</code> in <code>tokens.css</code> to re-theme the entire system.</p>
+      </div>
+      <div class="callout callout-warning">
+        <div class="callout-title">Warning</div>
+        <p>Using <code>@import</code> in production may cause render-blocking cascaded requests. Concatenate or bundle for production use.</p>
+      </div>
+      <div class="callout callout-caution">
+        <div class="callout-title">Caution</div>
+        <p>Overriding base element styles with framework-specific resets may cause conflicts. Load <code>utc-ds.css</code> after your framework's reset.</p>
+      </div>
+    </section>
+
+    <section class="showcase-section">
+      <h2>Cards</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h4 style="margin-top: 0;">docker-compose</h4>
+          <p>Multi-container orchestration tool for defining and running applications.</p>
+          <span class="badge badge-info">DevOps</span>
+        </div>
+        <div class="card">
+          <h4 style="margin-top: 0;">tmux</h4>
+          <p>Terminal multiplexer — manage multiple sessions, windows, and panes.</p>
+          <span class="badge badge-success">Terminal</span>
+        </div>
+        <div class="card">
+          <h4 style="margin-top: 0;">neovim</h4>
+          <p>Hyperextensible Vim-based text editor with Lua scripting support.</p>
+          <span class="badge badge-purple">Editor</span>
+        </div>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- ═══════════════════════════════════════════════════════
+         TERMINAL & ASCII
+         ═══════════════════════════════════════════════════════ -->
+    <section class="showcase-section" id="terminal">
+      <span class="showcase-label">Terminal &amp; ASCII</span>
+      <h2>Terminal Block</h2>
+      <div class="terminal">
+        <div class="terminal-header">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-title">~/projects/utc-ds</span>
+        </div>
+        <div class="terminal-body">
+          <div class="prompt">git status</div>
+          <div class="output">On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  new file:   tokens.css
+  new file:   base.css
+  new file:   components.css
+  new file:   utc-ds.css
+  new file:   index.html</div>
+          <br>
+          <div class="prompt">wc -l *.css *.html</div>
+          <div class="output">   150 tokens.css
+   608 base.css
+   672 components.css
+    17 utc-ds.css
+   450 index.html
+  1897 total</div>
+        </div>
+      </div>
+
+      <h2>ASCII Diagram</h2>
+      <pre class="ascii">
+┌─────────────────────────────────────────────────────┐
+│                    <span class="highlight">utc-ds</span>                          │
+│                                                     │
+│   ┌──────────┐   ┌──────────┐   ┌──────────┐       │
+│   │<span class="highlight"> tokens </span>  │──▶│<span class="highlight">  base  </span>  │   │<span class="highlight">  comps </span>  │       │
+│   │  .css    │   │  .css    │   │  .css    │       │
+│   └──────────┘   └──────────┘   └──────────┘       │
+│        │              │              │              │
+│        ▼              ▼              ▼              │
+│   ┌─────────────────────────────────────────┐       │
+│   │           <span class="highlight">utc-ds.css</span>                   │       │
+│   │         (entry point)                   │       │
+│   └─────────────────────────────────────────┘       │
+│        │                                            │
+│        ▼                                            │
+│   ┌─────────────────────────────────────────┐       │
+│   │        Your Project / Website            │       │
+│   │   <span class="dim">&lt;link rel="stylesheet"</span>                │       │
+│   │   <span class="dim">      href="utc-ds.css"&gt;</span>              │       │
+│   └─────────────────────────────────────────┘       │
+└─────────────────────────────────────────────────────┘
+      </pre>
+
+      <h3>Architecture Flow</h3>
+      <pre class="ascii">
+  <span class="highlight">Request</span>                    <span class="highlight">Response</span>
+    │                          ▲
+    ▼                          │
+┌────────┐  ┌────────┐  ┌────────┐
+│<span class="highlight"> Nginx</span>  │─▶│<span class="highlight">  App </span>  │─▶│<span class="highlight">  DB  </span>  │
+│  :80   │  │  :3000 │  │  :5432 │
+└────────┘  └────────┘  └────────┘
+    │            │
+    ▼            ▼
+┌────────┐  ┌────────┐
+│<span class="highlight"> Redis</span>  │  │<span class="highlight"> S3   </span>  │
+│  :6379 │  │ bucket │
+└────────┘  └────────┘
+      </pre>
+    </section>
+
+    <hr class="dot-fill">
+
+    <!-- ═══════════════════════════════════════════════════════
+         METADATA LINE
+         ═══════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <span class="showcase-label">Metadata Patterns</span>
+      <h2>Blog Post Metadata</h2>
+      <p>PlanetScale-style author + date + category lines:</p>
+
+      <div style="border: 1px dashed var(--ds-border-strong); padding: var(--ds-space-4); margin-bottom: var(--ds-space-4);">
+        <h3 style="margin-top: 0;"><a href="#" style="text-decoration: none;">Building a Design System from Scratch</a></h3>
+        <div class="meta">
+          <a href="#">Utkarsh Chourasia</a>
+          <a href="#" class="handle">[@utc]</a>
+          <span class="sep">|</span>
+          <time>May 30, 2026</time>
+          <span class="sep">|</span>
+          <span class="badge badge-info">Engineering</span>
+        </div>
+        <p style="margin-top: var(--ds-space-2);">How we built a terminal-inspired design system with zero JavaScript and pure CSS custom properties. <a href="#" class="arrow">Read more</a></p>
+      </div>
+
+      <div style="border: 1px dashed var(--ds-border-strong); padding: var(--ds-space-4);">
+        <h3 style="margin-top: 0;"><a href="#" style="text-decoration: none;">Docker Networking Deep Dive</a></h3>
+        <div class="meta">
+          <a href="#">Utkarsh Chourasia</a>
+          <a href="#" class="handle">[@utc]</a>
+          <span class="sep">|</span>
+          <time>April 15, 2026</time>
+          <span class="sep">|</span>
+          <span class="badge badge-purple">Tutorials</span>
+        </div>
+        <p style="margin-top: var(--ds-space-2);">Understanding bridge networks, overlay networks, and DNS resolution in Docker. <a href="#" class="arrow">Read more</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════════ -->
+  <footer class="footer container" id="footer-section">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>Projects</h3>
+        <a href="#">Project Alpha</a>
+        <a href="#">CLI Tool</a>
+        <a href="#">Docker Image</a>
+        <a href="#">VS Code Theme</a>
+      </div>
+      <div class="footer-col">
+        <h3>Resources</h3>
+        <a href="#">Documentation</a>
+        <a href="#">Blog</a>
+        <a href="#">Changelog</a>
+        <a href="#">RSS Feed</a>
+      </div>
+      <div class="footer-col">
+        <h3>Connect</h3>
+        <a href="#">GitHub</a>
+        <a href="#">Twitter / X</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Email</a>
+      </div>
+      <div class="footer-col">
+        <h3>More</h3>
+        <a href="#">Uses</a>
+        <a href="#">Colophon</a>
+        <a href="#">Design System</a>
+        <a href="#">Source Code</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>
+        <a href="#">Privacy</a>
+        <span class="sep">|</span>
+        <a href="#">Terms</a>
+        <span class="sep">|</span>
+        <a href="#">Colophon</a>
+      </p>
+      <p>© 2026 Utkarsh Chourasia. Built with utc-ds.</p>
+    </div>
+  </footer>
+
+  <!-- Minimal JS: hamburger toggle + theme toggle -->
+  <script>
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger-btn');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      hamburger.classList.toggle('open');
+    });
+
+    // Theme toggle (dark ↔ light)
+    const themeBtn = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    themeBtn.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'light' ? null : 'light';
+      if (next) {
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('utc-ds-theme', next);
+      } else {
+        html.removeAttribute('data-theme');
+        localStorage.removeItem('utc-ds-theme');
+      }
+    });
+
+    // Restore saved theme
+    const saved = localStorage.getItem('utc-ds-theme');
+    if (saved) html.setAttribute('data-theme', saved);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+/* ============================================================
+   utc-ds — Main Entry Point
+   ============================================================
+   Import this single file to get the entire design system.
+
+   Usage:
+     <link rel="stylesheet" href="utc-ds.css">
+   Or:
+     @import 'utc-ds.css';
+   ============================================================ */
+
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+/* ── Design System Layers ── */
+@import url('tokens.css');
+@import url('base.css');
+@import url('components.css');
