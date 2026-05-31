@@ -587,9 +587,16 @@ details[open] > summary::before {
   content: '▾ ';
 }
 
+/* Add bottom border to summary when open for visual separation */
+details[open] > summary {
+  padding-bottom: var(--ds-space-4);
+  border-bottom: 1px dashed var(--ds-border);
+  margin-bottom: 0;
+}
+
 /* Content area padding (everything except summary) */
 details > *:not(summary) {
-  padding: 0 var(--ds-space-4) var(--ds-space-3);
+  padding: var(--ds-space-4) var(--ds-space-4) var(--ds-space-4);
 }
 
 

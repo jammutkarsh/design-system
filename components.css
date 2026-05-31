@@ -318,15 +318,16 @@
  * ------------------------------------------------------------------------ */
 
 .card {
-  background: var(--ds-bg-secondary);
-  border: 1px solid var(--ds-border);
-  border-radius: var(--ds-radius-lg);
-  padding: var(--ds-space-6);
-  transition: border-color var(--ds-transition);
+  background: transparent;
+  border: 1px dashed var(--ds-border-strong);
+  border-radius: var(--ds-radius);
+  padding: var(--ds-space-4);
+  transition: all var(--ds-transition);
 }
 
 .card:hover {
-  border-color: var(--ds-border-strong);
+  border-color: var(--ds-primary);
+  background: var(--ds-bg-secondary);
 }
 
 .card-title {
@@ -345,7 +346,7 @@
 .card-footer {
   margin-top: var(--ds-space-4);
   padding-top: var(--ds-space-4);
-  border-top: 1px solid var(--ds-border);
+  border-top: 1px dashed var(--ds-border-strong);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -356,60 +357,42 @@
   background: var(--ds-bg-tertiary);
 }
 
-/* Accent variant — tinted with primary */
+/* Accent variant — same layout, different border color to stand out */
 .card-accent {
-  background: var(--ds-primary-subtle);
   border-color: var(--ds-primary-muted);
 }
 
 .card-accent:hover {
   border-color: var(--ds-primary);
+  background: var(--ds-bg-secondary);
 }
 
-/* Image card — with rounded-square image at top */
+/* Image card — emoji icon on the left, same base style as standard */
 .card-image {
-  padding: 0;
-  overflow: hidden;
-}
-
-.card-image .card-img {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  display: block;
-}
-
-.card-image .card-img-wrapper {
-  padding: var(--ds-space-4);
   display: flex;
-  justify-content: center;
+  align-items: flex-start;
+  gap: var(--ds-space-4);
 }
 
-.card-image .card-img-wrapper img {
-  width: 100%;
-  max-width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  border-radius: var(--ds-radius-lg);
-}
-
-/* Pixel art placeholder for cards without images */
+/* Pixel art emoji — small square on the left */
 .card-pixel-placeholder {
-  width: 100%;
-  aspect-ratio: 16 / 10;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
   background: var(--ds-bg-tertiary);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--ds-font-mono);
-  font-size: var(--ds-text-5xl);
-  color: var(--ds-text-tertiary);
-  image-rendering: pixelated;
+  font-size: 1.5rem;
+  border-radius: var(--ds-radius);
+  border: 1px dashed var(--ds-border);
   user-select: none;
+  flex-shrink: 0;
 }
 
 .card-image .card-content {
-  padding: var(--ds-space-4) var(--ds-space-6) var(--ds-space-6);
+  flex: 1;
+  min-width: 0;
 }
 
 .card-grid {
@@ -432,7 +415,7 @@
 
 
 /* --------------------------------------------------------------------------
- * 7. Badges / Tags
+ * 7. Badges
  *
  * Bracket-wrapped labels: [Engineering], [Product], etc.
  * Colour variants match the semantic palette.
@@ -512,22 +495,22 @@
 }
 
 /* Note — blue / info */
-.callout-note                { border-left-color: var(--ds-info); }
+.callout-note                { border-left-color: color-mix(in oklch, var(--ds-info) 50%, transparent); }
 .callout-note .callout-title { color: var(--ds-info); }
 .callout-note .callout-title::before { content: 'ℹ '; }
 
 /* Tip — green / success */
-.callout-tip                 { border-left-color: var(--ds-success); }
+.callout-tip                 { border-left-color: color-mix(in oklch, var(--ds-success) 50%, transparent); }
 .callout-tip .callout-title  { color: var(--ds-success); }
 .callout-tip .callout-title::before  { content: '✦ '; }
 
 /* Warning — yellow / warning */
-.callout-warning                { border-left-color: var(--ds-warning); }
+.callout-warning                { border-left-color: color-mix(in oklch, var(--ds-warning) 50%, transparent); }
 .callout-warning .callout-title { color: var(--ds-warning); }
 .callout-warning .callout-title::before { content: '⚠ '; }
 
 /* Caution — red / danger */
-.callout-caution                { border-left-color: var(--ds-danger); }
+.callout-caution                { border-left-color: color-mix(in oklch, var(--ds-danger) 50%, transparent); }
 .callout-caution .callout-title { color: var(--ds-danger); }
 .callout-caution .callout-title::before { content: '✕ '; }
 

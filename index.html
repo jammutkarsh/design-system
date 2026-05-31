@@ -83,6 +83,10 @@
       border-color: var(--ds-primary);
       color: var(--ds-primary);
     }
+    [data-theme="light"] .theme-toggle {
+      display: inline-block;
+      transform: scaleX(-1);
+    }
     .page-hero {
       padding: var(--ds-space-24) 0 var(--ds-space-16);
       border-bottom: 1px solid var(--ds-border);
@@ -127,7 +131,7 @@
         <span class="nav-sep">|</span>
         <a href="#footer-section" class="nav-link">Footer</a>
         <span class="nav-sep">|</span>
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light theme">◐ theme</button>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light theme">◐</button>
       </div>
     </div>
   </nav>
@@ -508,7 +512,7 @@ docker push <span class="token-variable">$REGISTRY</span>/<span class="token-var
          BADGES
          ═══════════════════════════════════════════════════════ -->
     <section class="showcase-section">
-      <div class="showcase-label">Badges &amp; Tags</div>
+      <div class="showcase-label">Badges</div>
 
       <div class="stack-6">
         <div>
@@ -592,30 +596,30 @@ docker push <span class="token-variable">$REGISTRY</span>/<span class="token-var
           <p class="mono-label" style="margin-bottom: 1rem;">Accent card</p>
           <div class="card card-accent">
             <div class="card-title">Featured Project — devtools-cli</div>
-            <div class="card-body">A unified CLI for spinning up local dev environments. Wraps Docker Compose with sane defaults, port management, and log aggregation.</div>
+            <div class="card-body">A unified CLI for spinning up local dev environments. Wraps Docker Compose with sane defaults, port management, and log aggregation. Features include automatic port detection, multi-service health checks, and colorized log streaming from all containers in a single terminal view.</div>
             <div style="margin-top: var(--ds-space-4);"><a href="#" class="btn btn-ghost btn-sm arrow">GitHub</a></div>
           </div>
         </div>
 
         <div>
-          <p class="mono-label" style="margin-bottom: 1rem;">Image cards (with pixel-art placeholders)</p>
-          <div class="grid-3">
+          <p class="mono-label" style="margin-bottom: 1rem;">Cards with emoji</p>
+          <div class="card-grid">
             <div class="card card-image">
-              <div class="card-pixel-placeholder" data-pixel-placeholder>🖥️</div>
+              <div class="card-pixel-placeholder">🖥️</div>
               <div class="card-content">
                 <div class="card-title">docker-compose</div>
                 <div class="card-body">Multi-container orchestration tool for defining and running applications.</div>
               </div>
             </div>
             <div class="card card-image">
-              <div class="card-pixel-placeholder" data-pixel-placeholder>⌨️</div>
+              <div class="card-pixel-placeholder">⌨️</div>
               <div class="card-content">
                 <div class="card-title">tmux</div>
                 <div class="card-body">Terminal multiplexer — manage multiple sessions, windows, and panes.</div>
               </div>
             </div>
             <div class="card card-image">
-              <div class="card-pixel-placeholder" data-pixel-placeholder>📡</div>
+              <div class="card-pixel-placeholder">📡</div>
               <div class="card-content">
                 <div class="card-title">neovim</div>
                 <div class="card-body">Hyperextensible Vim-based text editor with Lua scripting support.</div>
@@ -658,41 +662,41 @@ docker push <span class="token-variable">$REGISTRY</span>/<span class="token-var
       <div class="showcase-label">Blog Post Metadata</div>
 
       <div class="stack-6">
-        <div class="card">
-          <div class="card-title" style="font-size: var(--ds-text-lg);"><a href="#" style="text-decoration: none; color: var(--ds-text-primary);">Building a Design System from Scratch</a></div>
+        <a href="#" class="card card-blog" style="display: block; text-decoration: none; color: inherit;">
+          <div class="card-title" style="font-size: var(--ds-text-lg); color: var(--ds-text-primary);">Building a Design System from Scratch</div>
           <div class="meta" style="margin-top: var(--ds-space-2);">
-            <a href="#">Utkarsh Chourasia</a>
-            <a href="#" class="handle">[@utc]</a>
+            <span>Utkarsh Chourasia</span>
+            <span class="handle">[@utc]</span>
             <span class="sep">|</span>
             <time>May 30, 2026</time>
             <span class="sep">|</span>
             <span class="badge badge-info">Engineering</span>
           </div>
-          <div class="card-body" style="margin-top: var(--ds-space-3);">
+          <div class="card-body" style="margin-top: var(--ds-space-2);">
             How we built a terminal-inspired design system with zero JavaScript and pure CSS custom properties.
           </div>
-          <div style="margin-top: var(--ds-space-3);">
-            <a href="#" class="btn btn-ghost btn-sm arrow">Read more</a>
+          <div style="margin-top: var(--ds-space-2);">
+            <span class="btn btn-ghost btn-sm arrow">Read more</span>
           </div>
-        </div>
+        </a>
 
-        <div class="card">
-          <div class="card-title" style="font-size: var(--ds-text-lg);"><a href="#" style="text-decoration: none; color: var(--ds-text-primary);">Docker Networking Deep Dive</a></div>
+        <a href="#" class="card card-blog" style="display: block; text-decoration: none; color: inherit;">
+          <div class="card-title" style="font-size: var(--ds-text-lg); color: var(--ds-text-primary);">Docker Networking Deep Dive</div>
           <div class="meta" style="margin-top: var(--ds-space-2);">
-            <a href="#">Utkarsh Chourasia</a>
-            <a href="#" class="handle">[@utc]</a>
+            <span>Utkarsh Chourasia</span>
+            <span class="handle">[@utc]</span>
             <span class="sep">|</span>
             <time>April 15, 2026</time>
             <span class="sep">|</span>
             <span class="badge badge-purple">Tutorials</span>
           </div>
-          <div class="card-body" style="margin-top: var(--ds-space-3);">
+          <div class="card-body" style="margin-top: var(--ds-space-2);">
             Understanding bridge networks, overlay networks, and DNS resolution in Docker.
           </div>
-          <div style="margin-top: var(--ds-space-3);">
-            <a href="#" class="btn btn-ghost btn-sm arrow">Read more</a>
+          <div style="margin-top: var(--ds-space-2);">
+            <span class="btn btn-ghost btn-sm arrow">Read more</span>
           </div>
-        </div>
+        </a>
       </div>
     </section>
 
@@ -786,13 +790,7 @@ docker push <span class="token-variable">$REGISTRY</span>/<span class="token-var
       });
     });
 
-    // Pixel-art placeholder: randomly assign game-pixel emoji
-    const pixelEmojis = ['🖥️', '⌨️', '🎮', '📡', '🔧', '⚙️', '🧩', '📦', '🗄️', '💾', '🔌', '🛠️'];
-    document.querySelectorAll('[data-pixel-placeholder]').forEach(el => {
-      if (!el.textContent.trim()) {
-        el.textContent = pixelEmojis[Math.floor(Math.random() * pixelEmojis.length)];
-      }
-    });
+
   </script>
 
 </body>
