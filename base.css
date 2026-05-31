@@ -21,9 +21,10 @@
      .dot-fill      — dotted-line horizontal rule
      .ascii-hr      — repeated ─ character horizontal rule
      .table-mono    — monospace table cells
+     .hr-label      — labeled divider with centered text
+     .token-*       — syntax highlighting token classes
 
-   The optional [data-heading-prefix] attribute on any parent
-   makes headings render with markdown-style # prefixes.
+    Blockquote cite elements are styled as mono attributions.
 
    DEPENDENCIES
    ------------
@@ -104,7 +105,7 @@ body {
    ──────────────────────────────────────────────────────────── */
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: var(--ds-weight-semibold);
+  font-weight: var(--ds-weight-medium);
   line-height: var(--ds-leading-tight);
   color: var(--ds-text-primary);
 }
@@ -120,7 +121,9 @@ h4, h5, h6 {
 
 /* ── h1 ── */
 h1 {
-  font-size: var(--ds-text-4xl);
+  font-size: var(--ds-text-5xl);
+  font-weight: 300;
+  letter-spacing: -0.04em;
   margin-top: 0;
   margin-bottom: var(--ds-space-6);
 }
@@ -128,6 +131,7 @@ h1 {
 /* ── h2 — dashed bottom border, like glow renders h2 ── */
 h2 {
   font-size: var(--ds-text-3xl);
+  font-weight: 300;
   margin-top: var(--ds-space-12);
   margin-bottom: var(--ds-space-4);
   padding-bottom: var(--ds-space-2);
@@ -166,51 +170,7 @@ h6 {
   letter-spacing: var(--ds-tracking-wide);
 }
 
-/* ── Optional markdown-style heading prefixes ──
-   Add [data-heading-prefix] to any ancestor and headings
-   will display #, ##, ### etc. before the text.            */
-
-[data-heading-prefix] h1::before {
-  content: '# ';
-  color: var(--ds-text-tertiary);
-  font-family: var(--ds-font-mono);
-  font-weight: var(--ds-weight-normal);
-}
-
-[data-heading-prefix] h2::before {
-  content: '## ';
-  color: var(--ds-text-tertiary);
-  font-family: var(--ds-font-mono);
-  font-weight: var(--ds-weight-normal);
-}
-
-[data-heading-prefix] h3::before {
-  content: '### ';
-  color: var(--ds-text-tertiary);
-  font-family: var(--ds-font-mono);
-  font-weight: var(--ds-weight-normal);
-}
-
-[data-heading-prefix] h4::before {
-  content: '#### ';
-  color: var(--ds-text-tertiary);
-  font-family: var(--ds-font-mono);
-  font-weight: var(--ds-weight-normal);
-}
-
-[data-heading-prefix] h5::before {
-  content: '##### ';
-  color: var(--ds-text-tertiary);
-  font-family: var(--ds-font-mono);
-  font-weight: var(--ds-weight-normal);
-}
-
-[data-heading-prefix] h6::before {
-  content: '###### ';
-  color: var(--ds-text-tertiary);
-  font-family: var(--ds-font-mono);
-  font-weight: var(--ds-weight-normal);
-}
+/* Heading prefixes removed — clean headings without # symbols */
 
 
 /* ────────────────────────────────────────────────────────────
@@ -329,6 +289,16 @@ blockquote blockquote {
   border-left-color: var(--ds-border-strong);
 }
 
+/* Citation / attribution inside blockquote */
+blockquote cite {
+  display: block;
+  margin-top: var(--ds-space-3);
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-xs);
+  color: var(--ds-text-tertiary);
+  font-style: normal;
+}
+
 
 /* ────────────────────────────────────────────────────────────
    8. HORIZONTAL RULES (hr)
@@ -368,6 +338,27 @@ hr.ascii-hr {
 hr.ascii-hr::before {
   content: '────────────────────────────────────────────────────────────────────────────────';
   display: block;
+}
+
+/* Labeled divider — centered text with lines on each side */
+.hr-label {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-4);
+  margin: var(--ds-space-8) 0;
+  color: var(--ds-text-tertiary);
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hr-label::before,
+.hr-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--ds-border);
 }
 
 
@@ -410,6 +401,17 @@ pre code {
   color: inherit;
   border-radius: 0;
 }
+
+/* ── Syntax highlighting classes for code blocks ── */
+.token-keyword   { color: var(--ds-secondary); }        /* light blue — keywords */
+.token-function  { color: var(--ds-primary); }           /* orange — function names */
+.token-string    { color: var(--ds-warning); }           /* yellow — strings */
+.token-comment   { color: var(--ds-text-tertiary); }     /* dim — comments */
+.token-type      { color: var(--ds-secondary); }         /* light blue — types */
+.token-number    { color: var(--ds-purple); }             /* purple — numbers */
+.token-operator  { color: var(--ds-text-secondary); }    /* gray — operators */
+.token-variable  { color: var(--ds-pink, #ffd7ff); }     /* pink — variables */
+.token-builtin   { color: var(--ds-success); }           /* green — builtins */
 
 
 /* ────────────────────────────────────────────────────────────

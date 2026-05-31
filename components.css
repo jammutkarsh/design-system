@@ -75,11 +75,17 @@
 
 .nav-brand {
   font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
   font-weight: var(--ds-weight-semibold);
-  font-size: var(--ds-text-base);
-  color: var(--ds-primary);
+  color: var(--ds-text-primary);
   text-decoration: none;
-  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.nav-brand .nav-prefix {
+  color: var(--ds-primary);
 }
 
 .nav-links {
@@ -110,6 +116,48 @@
   padding: 0 var(--ds-space-1);
   user-select: none;
   font-family: var(--ds-font-mono);
+}
+
+
+/* --------------------------------------------------------------------------
+ * 2b. Breadcrumb (terminal-style)
+ *
+ * Path-like breadcrumb starting with ~/ prefix.
+ * Example: ~/projects/utc-ds/components
+ * ------------------------------------------------------------------------ */
+
+.breadcrumb {
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-sm);
+  color: var(--ds-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: var(--ds-space-2) 0;
+}
+
+.breadcrumb a {
+  color: var(--ds-text-secondary);
+  text-decoration: none;
+  transition: color var(--ds-transition);
+}
+
+.breadcrumb a:hover {
+  color: var(--ds-primary);
+}
+
+.breadcrumb .bc-sep {
+  color: var(--ds-text-tertiary);
+  padding: 0 2px;
+  user-select: none;
+}
+
+.breadcrumb .bc-home {
+  color: var(--ds-primary);
+}
+
+.breadcrumb .bc-current {
+  color: var(--ds-text-primary);
 }
 
 
@@ -265,25 +313,120 @@
 /* --------------------------------------------------------------------------
  * 6. Cards
  *
- * Dashed-border, terminal-feel cards. Hover turns the border accent.
- * .card-grid lays them out in a responsive auto-fill grid.
+ * Subtle border with raised background. Includes title, body, and footer
+ * areas. Variants: card-raised, card-accent, card-image.
  * ------------------------------------------------------------------------ */
 
 .card {
-  border: 1px dashed var(--ds-border-strong);
   background: var(--ds-bg-secondary);
-  padding: var(--ds-space-4);
-  border-radius: var(--ds-radius);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-lg);
+  padding: var(--ds-space-6);
   transition: border-color var(--ds-transition);
 }
 
 .card:hover {
+  border-color: var(--ds-border-strong);
+}
+
+.card-title {
+  font-size: var(--ds-text-base);
+  font-weight: var(--ds-weight-medium);
+  color: var(--ds-text-primary);
+  margin-bottom: var(--ds-space-2);
+}
+
+.card-body {
+  font-size: var(--ds-text-sm);
+  color: var(--ds-text-secondary);
+  line-height: 1.65;
+}
+
+.card-footer {
+  margin-top: var(--ds-space-4);
+  padding-top: var(--ds-space-4);
+  border-top: 1px solid var(--ds-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Raised variant — slightly lighter bg */
+.card-raised {
+  background: var(--ds-bg-tertiary);
+}
+
+/* Accent variant — tinted with primary */
+.card-accent {
+  background: var(--ds-primary-subtle);
+  border-color: var(--ds-primary-muted);
+}
+
+.card-accent:hover {
   border-color: var(--ds-primary);
+}
+
+/* Image card — with rounded-square image at top */
+.card-image {
+  padding: 0;
+  overflow: hidden;
+}
+
+.card-image .card-img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
+
+.card-image .card-img-wrapper {
+  padding: var(--ds-space-4);
+  display: flex;
+  justify-content: center;
+}
+
+.card-image .card-img-wrapper img {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--ds-radius-lg);
+}
+
+/* Pixel art placeholder for cards without images */
+.card-pixel-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--ds-bg-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-5xl);
+  color: var(--ds-text-tertiary);
+  image-rendering: pixelated;
+  user-select: none;
+}
+
+.card-image .card-content {
+  padding: var(--ds-space-4) var(--ds-space-6) var(--ds-space-6);
 }
 
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--ds-space-4);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--ds-space-4);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--ds-space-4);
 }
 
@@ -449,6 +592,50 @@
 
 .terminal-body .output {
   color: var(--ds-text-secondary);
+}
+
+/* Copy button — appears on hover over terminal-body sections */
+.terminal-cmd {
+  position: relative;
+  padding: var(--ds-space-2) var(--ds-space-3);
+  border-radius: var(--ds-radius-sm);
+  transition: background var(--ds-transition);
+}
+
+.terminal-cmd:hover {
+  background: var(--ds-bg-elevated);
+}
+
+.terminal-cmd .copy-btn {
+  position: absolute;
+  right: var(--ds-space-2);
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-text-xs);
+  color: var(--ds-text-tertiary);
+  background: var(--ds-bg-tertiary);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-sm);
+  padding: 2px var(--ds-space-2);
+  cursor: pointer;
+  transition: all var(--ds-transition);
+  white-space: nowrap;
+}
+
+.terminal-cmd:hover .copy-btn {
+  opacity: 1;
+}
+
+.terminal-cmd .copy-btn:hover {
+  color: var(--ds-primary);
+  border-color: var(--ds-primary);
+}
+
+.terminal-cmd .copy-btn.copied {
+  color: var(--ds-success);
+  border-color: var(--ds-success);
 }
 
 

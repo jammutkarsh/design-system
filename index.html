@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-heading-prefix>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
   <meta name="description" content="A terminal-inspired design system for developer portfolios and project websites.">
   <link rel="stylesheet" href="utc-ds.css">
   <style>
-    /* Showcase-specific: section spacing & labels */
+    /* Showcase-specific styles */
     .showcase-section {
       margin-bottom: var(--ds-space-16);
     }
@@ -18,23 +18,42 @@
       text-transform: uppercase;
       letter-spacing: var(--ds-tracking-wide);
       margin-bottom: var(--ds-space-6);
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: var(--ds-space-3);
     }
     .showcase-label::before {
-      content: '// ';
+      content: '##';
+      color: var(--ds-primary);
     }
     .swatch-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: var(--ds-space-2);
+      gap: var(--ds-space-3);
       margin-bottom: var(--ds-space-4);
     }
     .swatch {
-      padding: var(--ds-space-3);
       border-radius: var(--ds-radius);
+      overflow: hidden;
+      border: 1px solid var(--ds-border);
+    }
+    .swatch-color {
+      height: 52px;
+    }
+    .swatch-info {
+      padding: var(--ds-space-2) var(--ds-space-3);
+      background: var(--ds-bg-secondary);
+    }
+    .swatch-name {
       font-family: var(--ds-font-mono);
       font-size: var(--ds-text-xs);
-      border: 1px solid var(--ds-border);
+      color: var(--ds-text-primary);
+    }
+    .swatch-value {
+      font-family: var(--ds-font-mono);
+      font-size: 10px;
+      color: var(--ds-text-tertiary);
+      margin-top: 2px;
     }
     .btn-row {
       display: flex;
@@ -64,6 +83,24 @@
       border-color: var(--ds-primary);
       color: var(--ds-primary);
     }
+    .page-hero {
+      padding: var(--ds-space-24) 0 var(--ds-space-16);
+      border-bottom: 1px solid var(--ds-border);
+    }
+    .stack-4 > * + * { margin-top: var(--ds-space-4); }
+    .stack-6 > * + * { margin-top: var(--ds-space-6); }
+    .stack-8 > * + * { margin-top: var(--ds-space-8); }
+    .mono-label {
+      font-family: var(--ds-font-mono);
+      font-size: var(--ds-text-xs);
+      color: var(--ds-text-tertiary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .row { display: flex; align-items: center; flex-wrap: wrap; gap: var(--ds-space-3); }
+
+    /* Pixel art emoji placeholders for cards */
+    .pixel-art { image-rendering: pixelated; font-size: 3rem; line-height: 1; }
   </style>
 </head>
 <body>
@@ -73,7 +110,7 @@
        ═══════════════════════════════════════════════════════════ -->
   <nav class="nav" id="main-nav">
     <div class="nav-inner container">
-      <a href="#" class="nav-brand">utc-ds</a>
+      <a href="#" class="nav-brand"><span class="nav-prefix">~/</span>utc-ds</a>
       <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
         <span></span>
         <span></span>
@@ -98,17 +135,27 @@
   <main class="container-prose">
 
     <!-- ═══════════════════════════════════════════════════════
+         BREADCRUMB
+         ═══════════════════════════════════════════════════════ -->
+    <div class="breadcrumb" style="margin-top: var(--ds-space-4);">
+      <span class="bc-home">~</span><span class="bc-sep">/</span><a href="#">projects</a><span class="bc-sep">/</span><span class="bc-current">utc-ds</span>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
          HERO
          ═══════════════════════════════════════════════════════ -->
-    <div class="showcase-section" style="margin-top: var(--ds-space-8);">
-      <h1>utc-ds</h1>
-      <p class="lead">A terminal-inspired design system for developer portfolios and project websites. Built with pure CSS, zero JavaScript dependencies, and a dark-first philosophy.</p>
-      <p>Inspired by <a href="https://planetscale.com/">PlanetScale</a>'s website aesthetic and <a href="https://github.com/charmbracelet/glow">charmbracelet/glow</a>'s terminal markdown rendering. Change <code>--ds-primary</code> and <code>--ds-secondary</code> to re-theme everything.</p>
+    <div class="page-hero">
+      <span class="mono-label" style="display: block; margin-bottom: var(--ds-space-4);">design-system / v1.0</span>
+      <h1>Design System</h1>
+      <p class="lead" style="max-width: 600px; margin-top: var(--ds-space-6);">A terminal-native visual language for developers who live in the dark. Built around monospace type, structural honesty, and zero decoration.</p>
+      <div class="row" style="margin-top: var(--ds-space-8);">
+        <a href="#" class="btn btn-primary">View source</a>
+        <a href="#" class="btn btn-ghost arrow">Documentation</a>
+      </div>
 
-      <div class="meta" style="margin-top: var(--ds-space-4);">
+      <div class="meta" style="margin-top: var(--ds-space-6);">
         <a href="#">Utkarsh Chourasia</a>
-        <span class="sep">|</span>
-        <a href="#" class="handle">@utc</a>
+        <a href="#" class="handle">[@utc]</a>
         <span class="sep">|</span>
         <time>2026</time>
         <span class="sep">|</span>
@@ -116,90 +163,242 @@
       </div>
     </div>
 
-    <hr class="dot-fill">
-
     <!-- ═══════════════════════════════════════════════════════
          COLORS
          ═══════════════════════════════════════════════════════ -->
-    <section class="showcase-section" id="colors">
-      <span class="showcase-label">Color Palette</span>
-      <h2>Colors</h2>
-      <p>The entire palette derives from just two user-configurable variables: <code>--ds-primary</code> and <code>--ds-secondary</code>. All hover, muted, and subtle variants are auto-generated via <code>color-mix()</code> in oklch.</p>
+    <section class="showcase-section" id="colors" style="padding-top: var(--ds-space-16);">
+      <div class="showcase-label">Colors</div>
 
-      <h3>Backgrounds</h3>
-      <div class="swatch-grid">
-        <div class="swatch" style="background: var(--ds-bg-primary); color: var(--ds-text-primary);">bg-primary</div>
-        <div class="swatch" style="background: var(--ds-bg-secondary); color: var(--ds-text-primary);">bg-secondary</div>
-        <div class="swatch" style="background: var(--ds-bg-tertiary); color: var(--ds-text-primary);">bg-tertiary</div>
-        <div class="swatch" style="background: var(--ds-bg-code); color: var(--ds-text-primary);">bg-code</div>
-        <div class="swatch" style="background: var(--ds-bg-elevated); color: var(--ds-text-primary);">bg-elevated</div>
-      </div>
-
-      <h3>Brand &amp; Semantic</h3>
-      <div class="swatch-grid">
-        <div class="swatch" style="background: var(--ds-primary); color: #fff;">primary</div>
-        <div class="swatch" style="background: var(--ds-primary-hover); color: #fff;">primary-hover</div>
-        <div class="swatch" style="background: var(--ds-primary-muted); color: var(--ds-primary);">primary-muted</div>
-        <div class="swatch" style="background: var(--ds-secondary); color: #fff;">secondary</div>
-        <div class="swatch" style="background: var(--ds-success); color: #fff;">success</div>
-        <div class="swatch" style="background: var(--ds-warning); color: #000;">warning</div>
-        <div class="swatch" style="background: var(--ds-danger); color: #fff;">danger</div>
-        <div class="swatch" style="background: var(--ds-purple); color: #fff;">purple</div>
+      <div class="stack-8">
+        <div>
+          <p class="mono-label" style="margin-bottom: 1rem;">Surface</p>
+          <div class="swatch-grid">
+            <div class="swatch"><div class="swatch-color" style="background: var(--ds-bg-primary); border-bottom: 1px solid var(--ds-border);"></div><div class="swatch-info"><div class="swatch-name">bg-primary</div><div class="swatch-value">#0a0a0a</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--ds-bg-secondary);"></div><div class="swatch-info"><div class="swatch-name">bg-secondary</div><div class="swatch-value">#111111</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--ds-bg-tertiary);"></div><div class="swatch-info"><div class="swatch-name">bg-tertiary</div><div class="swatch-value">#1a1a1a</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--ds-bg-elevated);"></div><div class="swatch-info"><div class="swatch-name">bg-elevated</div><div class="swatch-value">#1e1e1e</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--ds-border);"></div><div class="swatch-info"><div class="swatch-name">border</div><div class="swatch-value">#222222</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--ds-border-strong);"></div><div class="swatch-info"><div class="swatch-name">border-strong</div><div class="swatch-value">#333333</div></div></div>
+          </div>
+        </div>
+        <div>
+          <p class="mono-label" style="margin-bottom: 1rem;">Brand &amp; Semantic (from ZSH theme)</p>
+          <div class="swatch-grid">
+            <div class="swatch"><div class="swatch-color" style="background: var(--ds-primary);"></div><div class="swatch-info"><div class="swatch-name">primary</div><div class="swatch-value">#ff5f00</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--ds-secondary);"></div><div class="swatch-info"><div class="swatch-name">secondary</div><div class="swatch-value">#afd7ff</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--ds-purple);"></div><div class="swatch-info"><div class="swatch-name">purple</div><div class="swatch-value">#af00d7</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--ds-success);"></div><div class="swatch-info"><div class="swatch-name">success</div><div class="swatch-value">#22a652</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--ds-warning);"></div><div class="swatch-info"><div class="swatch-name">warning</div><div class="swatch-value">#f5a623</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--ds-danger);"></div><div class="swatch-info"><div class="swatch-name">danger</div><div class="swatch-value">#ff0000</div></div></div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <hr>
+    <div class="hr-label">typography</div>
 
     <!-- ═══════════════════════════════════════════════════════
          TYPOGRAPHY
          ═══════════════════════════════════════════════════════ -->
     <section class="showcase-section" id="typography">
-      <span class="showcase-label">Typography</span>
-      <h2>Headings</h2>
-      <p>Headings use <strong>Inter</strong> with tight tracking. The <code>[data-heading-prefix]</code> attribute on this page adds markdown-style <code>#</code> prefixes. H2 gets a dashed bottom border like glow renders section headings.</p>
+      <div class="showcase-label">Typography</div>
 
-      <h1>Heading Level 1</h1>
-      <h2>Heading Level 2</h2>
-      <h3>Heading Level 3</h3>
-      <h4>Heading Level 4</h4>
-      <h5>Heading Level 5</h5>
-      <h6>Heading Level 6</h6>
+      <div class="stack-8">
+        <div>
+          <p class="mono-label" style="margin-bottom: 1.5rem;">Scale — Inter</p>
+          <div class="stack-6">
+            <div><span class="mono-label" style="display:inline-block;width:3.5rem;">h1</span><h1 style="display:inline; margin: 0; border: none;">The world's fastest systems</h1></div>
+            <div><span class="mono-label" style="display:inline-block;width:3.5rem;">h2</span><h2 style="display:inline; margin: 0; border: none; padding: 0;">Infrastructure you can trust</h2></div>
+            <div><span class="mono-label" style="display:inline-block;width:3.5rem;">h3</span><h3 style="display:inline; margin: 0;">Deploy in any region</h3></div>
+            <div><span class="mono-label" style="display:inline-block;width:3.5rem;">h4</span><h4 style="display:inline; margin: 0;">Connection pooling</h4></div>
+            <div><span class="mono-label" style="display:inline-block;width:3.5rem;">h5</span><h5 style="display:inline; margin: 0;">Query analyzer</h5></div>
+            <div><span class="mono-label" style="display:inline-block;width:3.5rem;">h6</span><h6 style="display:inline; margin: 0;">Replica regions</h6></div>
+          </div>
+        </div>
 
-      <h3>Body Text</h3>
-      <p>This is a standard paragraph set in Inter at 16px with a line-height of 1.7. The design system prioritizes <strong>readability</strong> and <em>clarity</em>. Text is constrained to a comfortable reading width of 48rem (768px).</p>
-      <p class="lead">This is a lead paragraph — used for introductions and summaries. It's slightly larger and uses the secondary text color for visual hierarchy.</p>
-      <p><small>This is small text, useful for fine print, footnotes, and disclaimers.</small></p>
+        <hr>
+
+        <div>
+          <p class="mono-label" style="margin-bottom: 1.5rem;">Body text</p>
+          <p class="lead">A lead paragraph sets the tone. It sits one size larger than body, in a lighter weight, with a little more air between lines. Use it once per section.</p>
+          <p style="margin-top: 1rem;">Regular body copy uses <code>--ds-text-base</code> at 16px with <code>--ds-text-primary</code> color. It's meant to be comfortable for long reads without competing with headings. Paragraphs breathe with 1.7 line-height.</p>
+          <p>You can use <strong>strong emphasis</strong> to pull a word forward, or <em>italic</em> for citations and soft emphasis. <a href="#">Hyperlinks use color and underline</a> — visible without relying on context alone.</p>
+        </div>
+
+        <hr>
+
+        <div>
+          <p class="mono-label" style="margin-bottom: 1.5rem;">Monospace — JetBrains Mono</p>
+          <p style="font-family: var(--ds-font-mono); color: var(--ds-text-secondary);">The quick brown fox jumped over the lazy dog. 0123456789 → ← ≤ ≥</p>
+          <p style="margin-top: 0.75rem;">Inline code: run <code>docker compose up -d</code> to start the stack, then <code>kubectl get pods</code> to verify.</p>
+        </div>
+
+        <div>
+          <p class="mono-label" style="margin-bottom: 1rem;">Inline elements</p>
+          <p>
+            Use <strong>strong</strong> for importance,
+            <em>emphasis</em> for stress,
+            <code>inline code</code> for technical terms,
+            <kbd>⌘</kbd> + <kbd>K</kbd> for keyboard shortcuts,
+            <mark>highlighted text</mark> for attention,
+            <del>deleted text</del> for corrections,
+            and <abbr title="Design System">DS</abbr> for abbreviations.
+          </p>
+        </div>
+      </div>
     </section>
 
-    <hr class="dot-fill">
+    <div class="hr-label">terminal &amp; code</div>
 
     <!-- ═══════════════════════════════════════════════════════
-         INLINE ELEMENTS
+         TERMINAL & CODE
          ═══════════════════════════════════════════════════════ -->
-    <section class="showcase-section" id="elements">
-      <span class="showcase-label">Inline Elements</span>
-      <h2>Inline Semantics</h2>
-      <p>
-        Here's <a href="#">a hyperlink</a> styled with the accent color.
-        Use <strong>strong</strong> for importance,
-        <em>emphasis</em> for stress,
-        <code>inline code</code> for technical terms,
-        <kbd>⌘</kbd> + <kbd>K</kbd> for keyboard shortcuts,
-        <mark>highlighted text</mark> for attention,
-        <del>deleted text</del> for corrections,
-        and <abbr title="Design System">DS</abbr> for abbreviations.
-        We also support <sup>superscripts</sup> and <sub>subscripts</sub>.
-      </p>
+    <section class="showcase-section" id="terminal">
+      <div class="showcase-label">Terminal &amp; Code Blocks</div>
+
+      <div class="stack-8">
+        <div>
+          <p class="mono-label" style="margin-bottom: 1rem;">Terminal (hover to copy)</p>
+          <div class="terminal">
+            <div class="terminal-header">
+              <span class="terminal-dot"></span>
+              <span class="terminal-dot"></span>
+              <span class="terminal-dot"></span>
+              <span class="terminal-title">bash — utc@arch ~/projects/utc-ds</span>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-cmd">
+                <div class="prompt">docker compose -f infra/docker-compose.yml up -d</div>
+                <div class="output">[+] Running 4/4
+ ✔ Container postgres   Started   0.4s
+ ✔ Container redis      Started   0.3s
+ ✔ Container api        Started   1.1s
+ ✔ Container nginx      Started   0.8s</div>
+                <button class="copy-btn" data-copy="docker compose -f infra/docker-compose.yml up -d">copy</button>
+              </div>
+              <br>
+              <div class="terminal-cmd">
+                <div class="prompt">curl -s localhost:3000/health | jq .</div>
+                <div class="output">{
+  "status": "ok",
+  "db": "connected",
+  "uptime": 3.24
+}</div>
+                <button class="copy-btn" data-copy="curl -s localhost:3000/health | jq .">copy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="mono-label" style="margin-bottom: 1rem;">Colored code block</p>
+          <pre><code><span class="token-comment">// server.go</span>
+<span class="token-keyword">func</span> <span class="token-function">healthHandler</span>(w http.ResponseWriter, r *http.Request) {
+    w.Header().Set(<span class="token-string">"Content-Type"</span>, <span class="token-string">"application/json"</span>)
+    json.NewEncoder(w).Encode(map[<span class="token-type">string</span>]<span class="token-type">any</span>{
+        <span class="token-string">"status"</span>:  <span class="token-string">"ok"</span>,
+        <span class="token-string">"version"</span>: os.Getenv(<span class="token-string">"APP_VERSION"</span>),
+    })
+}</code></pre>
+        </div>
+
+        <div>
+          <p class="mono-label" style="margin-bottom: 1rem;">Shell script with syntax</p>
+          <pre><code><span class="token-comment">#!/bin/bash</span>
+<span class="token-comment"># Deploy script for production</span>
+<span class="token-keyword">set</span> -euo pipefail
+
+<span class="token-builtin">echo</span> <span class="token-string">"Building Docker image..."</span>
+docker build -t <span class="token-variable">$APP_NAME</span>:latest .
+
+<span class="token-builtin">echo</span> <span class="token-string">"Pushing to registry..."</span>
+docker push <span class="token-variable">$REGISTRY</span>/<span class="token-variable">$APP_NAME</span>:latest
+
+<span class="token-keyword">if</span> [ <span class="token-variable">$?</span> <span class="token-operator">-eq</span> <span class="token-number">0</span> ]; <span class="token-keyword">then</span>
+    <span class="token-builtin">echo</span> <span class="token-string">"✓ Deployment complete"</span>
+<span class="token-keyword">fi</span></code></pre>
+        </div>
+
+        <div>
+          <p class="mono-label" style="margin-bottom: 1rem;">ASCII Diagram</p>
+          <pre class="ascii">
+  Client                    API Gateway               Service
+    │                           │                        │
+    │  POST /api/v1/deploy       │                        │
+    │ ─────────────────────────▶ │                        │
+    │                           │   validate token        │
+    │                           │ ──────────────────────▶ │
+    │                           │   200 OK + payload      │
+    │                           │ ◀────────────────────── │
+    │                           │                        │
+    │                           │   ┌──────────────────┐  │
+    │                           │   │  <span class="highlight">queue job</span>        │  │
+    │                           │   │  deploy:abc123   │  │
+    │                           │   └──────────────────┘  │
+    │  202 Accepted              │                        │
+    │ ◀───────────────────────── │                        │
+    │                           │                        │
+          </pre>
+        </div>
+      </div>
     </section>
 
-    <hr>
+    <div class="hr-label">dividers</div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         HORIZONTAL RULES
+         ═══════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <div class="showcase-label">Dividers</div>
+
+      <div class="stack-8">
+        <div>
+          <p class="mono-label" style="margin-bottom: 1rem;">Default (dashed)</p>
+          <hr>
+        </div>
+        <div>
+          <p class="mono-label" style="margin-bottom: 1rem;">Dot Fill</p>
+          <hr class="dot-fill">
+        </div>
+        <div>
+          <p class="mono-label" style="margin-bottom: 1rem;">ASCII (box-drawing)</p>
+          <hr class="ascii-hr">
+        </div>
+        <div>
+          <p class="mono-label" style="margin-bottom: 1rem;">Labeled divider</p>
+          <div class="hr-label">infrastructure</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="hr-label">blockquotes</div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         BLOCKQUOTES
+         ═══════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <div class="showcase-label">Blockquotes</div>
+
+      <div class="stack-6">
+        <blockquote>
+          The best tools are the ones that get out of your way.
+          <cite>— someone on Hacker News, probably</cite>
+        </blockquote>
+
+        <blockquote>
+          <p>We run this design system because it just works. No ops, no surprises, just fast pages at any scale.</p>
+          <cite>— Engineering team @SomeStartup</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <div class="hr-label">lists</div>
 
     <!-- ═══════════════════════════════════════════════════════
          LISTS
          ═══════════════════════════════════════════════════════ -->
     <section class="showcase-section">
-      <span class="showcase-label">Lists</span>
-      <h2>Lists</h2>
+      <div class="showcase-label">Lists</div>
 
       <h3>Unordered List</h3>
       <ul>
@@ -229,165 +428,209 @@
         <dd>A lightweight, standalone package that includes everything needed to run a piece of software.</dd>
         <dt>Image</dt>
         <dd>A read-only template used to create containers. Built from a Dockerfile.</dd>
-        <dt>Volume</dt>
-        <dd>A persistent data storage mechanism that exists outside the container lifecycle.</dd>
       </dl>
     </section>
 
-    <hr class="ascii-hr">
-
-    <!-- ═══════════════════════════════════════════════════════
-         BLOCKQUOTES
-         ═══════════════════════════════════════════════════════ -->
-    <section class="showcase-section">
-      <span class="showcase-label">Blockquotes</span>
-      <h2>Blockquotes</h2>
-      <blockquote>
-        <p>"Simplicity is the ultimate sophistication." — Leonardo da Vinci</p>
-      </blockquote>
-      <blockquote>
-        <p>Nested blockquotes are supported too. The left border uses the primary accent color, making them stand out without being intrusive.</p>
-        <blockquote>
-          <p>This is a nested quote — useful for citing sources within commentary.</p>
-        </blockquote>
-      </blockquote>
-    </section>
-
-    <hr>
-
-    <!-- ═══════════════════════════════════════════════════════
-         HORIZONTAL RULES
-         ═══════════════════════════════════════════════════════ -->
-    <section class="showcase-section">
-      <span class="showcase-label">Horizontal Rules</span>
-      <h2>Horizontal Rules</h2>
-      <p>Three variants inspired by terminal rendering:</p>
-
-      <h4>Default (dashed)</h4>
-      <hr>
-
-      <h4>Dot Fill (PlanetScale-style)</h4>
-      <hr class="dot-fill">
-
-      <h4>ASCII (box-drawing characters)</h4>
-      <hr class="ascii-hr">
-    </section>
-
-    <hr>
-
-    <!-- ═══════════════════════════════════════════════════════
-         CODE
-         ═══════════════════════════════════════════════════════ -->
-    <section class="showcase-section">
-      <span class="showcase-label">Code</span>
-      <h2>Code Blocks</h2>
-      <p>Inline code uses <code>JetBrains Mono</code> with a subtle background. Block code gets a bordered container:</p>
-
-      <pre><code>#!/bin/bash
-# Deploy script for production
-set -euo pipefail
-
-echo "Building Docker image..."
-docker build -t myapp:latest .
-
-echo "Pushing to registry..."
-docker push registry.example.com/myapp:latest
-
-echo "Deploying to cluster..."
-kubectl rollout restart deployment/myapp
-
-echo "✓ Deployment complete"</code></pre>
-
-      <p>And here's a configuration example:</p>
-
-      <pre><code># docker-compose.yml
-version: '3.8'
-services:
-  app:
-    build: .
-    ports:
-      - "8080:80"
-    environment:
-      DATABASE_URL: postgres://db:5432/myapp
-    depends_on:
-      - db
-  db:
-    image: postgres:16
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-
-volumes:
-  pgdata:</code></pre>
-    </section>
-
-    <hr class="dot-fill">
+    <div class="hr-label">tables</div>
 
     <!-- ═══════════════════════════════════════════════════════
          TABLES
          ═══════════════════════════════════════════════════════ -->
     <section class="showcase-section">
-      <span class="showcase-label">Tables</span>
-      <h2>Tables</h2>
+      <div class="showcase-label">Table</div>
 
       <table>
         <thead>
           <tr>
-            <th>Command</th>
-            <th>Description</th>
-            <th>Example</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>docker ps</code></td>
-            <td>List running containers</td>
-            <td><code>docker ps -a</code></td>
-          </tr>
-          <tr>
-            <td><code>docker build</code></td>
-            <td>Build an image from Dockerfile</td>
-            <td><code>docker build -t app .</code></td>
-          </tr>
-          <tr>
-            <td><code>docker exec</code></td>
-            <td>Execute command in container</td>
-            <td><code>docker exec -it app sh</code></td>
-          </tr>
-          <tr>
-            <td><code>docker logs</code></td>
-            <td>Fetch container logs</td>
-            <td><code>docker logs -f app</code></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>Monospace Table</h3>
-      <table class="table-mono">
-        <thead>
-          <tr>
-            <th>Port</th>
             <th>Service</th>
+            <th>Region</th>
             <th>Status</th>
+            <th>Uptime</th>
+            <th>Last deploy</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>22</td><td>SSH</td><td>●&nbsp;active</td></tr>
-          <tr><td>80</td><td>Nginx</td><td>●&nbsp;active</td></tr>
-          <tr><td>443</td><td>HTTPS</td><td>●&nbsp;active</td></tr>
-          <tr><td>5432</td><td>PostgreSQL</td><td>○&nbsp;stopped</td></tr>
-          <tr><td>6379</td><td>Redis</td><td>●&nbsp;active</td></tr>
+          <tr>
+            <td><code>api</code></td>
+            <td>us-east-1</td>
+            <td><span class="badge badge-success">healthy</span></td>
+            <td>99.98%</td>
+            <td class="text-tertiary text-mono text-xs">2h ago</td>
+          </tr>
+          <tr>
+            <td><code>worker</code></td>
+            <td>us-east-1</td>
+            <td><span class="badge badge-success">healthy</span></td>
+            <td>99.91%</td>
+            <td class="text-tertiary text-mono text-xs">2h ago</td>
+          </tr>
+          <tr>
+            <td><code>scheduler</code></td>
+            <td>eu-west-2</td>
+            <td><span class="badge badge-warning">degraded</span></td>
+            <td>97.12%</td>
+            <td class="text-tertiary text-mono text-xs">18h ago</td>
+          </tr>
+          <tr>
+            <td><code>cdn-proxy</code></td>
+            <td>global</td>
+            <td><span class="badge badge-success">healthy</span></td>
+            <td>100%</td>
+            <td class="text-tertiary text-mono text-xs">5d ago</td>
+          </tr>
         </tbody>
       </table>
     </section>
 
-    <hr>
+    <div class="hr-label">components</div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         BUTTONS
+         ═══════════════════════════════════════════════════════ -->
+    <section class="showcase-section" id="components">
+      <div class="showcase-label">Buttons</div>
+
+      <div class="stack-8">
+        <div>
+          <p class="mono-label" style="margin-bottom: 1rem;">Variants</p>
+          <div class="btn-row">
+            <button class="btn btn-primary">Deploy</button>
+            <button class="btn">Default</button>
+            <button class="btn btn-ghost">View docs</button>
+            <button class="btn btn-sm">Small</button>
+            <a href="#" class="btn btn-primary arrow">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         BADGES
+         ═══════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <div class="showcase-label">Badges &amp; Tags</div>
+
+      <div class="stack-6">
+        <div>
+          <p class="mono-label" style="margin-bottom: 1rem;">Status</p>
+          <div class="badge-row">
+            <span class="badge badge-success">running</span>
+            <span class="badge badge-danger">failed</span>
+            <span class="badge badge-warning">pending</span>
+            <span class="badge badge-info">scheduled</span>
+            <span class="badge badge-primary">deployed</span>
+            <span class="badge badge-purple">experimental</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         CALLOUTS
+         ═══════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <div class="showcase-label">Callouts</div>
+
+      <div class="stack-4">
+        <div class="callout callout-note">
+          <div class="callout-title">Note</div>
+          <p>This design system uses <code>color-mix()</code> in oklch for derived colors. This is a Baseline 2023 feature supported in all modern browsers.</p>
+        </div>
+        <div class="callout callout-tip">
+          <div class="callout-title">Tip</div>
+          <p>Change only <code>--ds-primary</code> and <code>--ds-secondary</code> in <code>tokens.css</code> to re-theme the entire system.</p>
+        </div>
+        <div class="callout callout-warning">
+          <div class="callout-title">Warning</div>
+          <p>Schema migrations lock the table. Running <code>ALTER TABLE</code> on large tables will block writes.</p>
+        </div>
+        <div class="callout callout-caution">
+          <div class="callout-title">Caution</div>
+          <p>This will permanently delete all data in the <code>production</code> branch. There is no undo.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="hr-label">cards</div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         CARDS
+         ═══════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <div class="showcase-label">Cards</div>
+
+      <div class="stack-8">
+        <div>
+          <p class="mono-label" style="margin-bottom: 1rem;">Standard cards</p>
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-title">pg-backups</div>
+              <div class="card-body">Automated daily backups to S3 with point-in-time recovery. Retention: 30 days.</div>
+              <div class="card-footer">
+                <div class="row">
+                  <span class="badge badge-success">running</span>
+                  <span class="badge badge-info">postgres</span>
+                </div>
+                <a href="#" class="btn btn-ghost btn-sm arrow">View</a>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">redis-cluster</div>
+              <div class="card-body">Session cache and rate limiting. Three replicas across availability zones.</div>
+              <div class="card-footer">
+                <div class="row">
+                  <span class="badge badge-warning">degraded</span>
+                  <span class="badge badge-info">redis</span>
+                </div>
+                <a href="#" class="btn btn-ghost btn-sm arrow">View</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="mono-label" style="margin-bottom: 1rem;">Accent card</p>
+          <div class="card card-accent">
+            <div class="card-title">Featured Project — devtools-cli</div>
+            <div class="card-body">A unified CLI for spinning up local dev environments. Wraps Docker Compose with sane defaults, port management, and log aggregation.</div>
+            <div style="margin-top: var(--ds-space-4);"><a href="#" class="btn btn-ghost btn-sm arrow">GitHub</a></div>
+          </div>
+        </div>
+
+        <div>
+          <p class="mono-label" style="margin-bottom: 1rem;">Image cards (with pixel-art placeholders)</p>
+          <div class="grid-3">
+            <div class="card card-image">
+              <div class="card-pixel-placeholder" data-pixel-placeholder>🖥️</div>
+              <div class="card-content">
+                <div class="card-title">docker-compose</div>
+                <div class="card-body">Multi-container orchestration tool for defining and running applications.</div>
+              </div>
+            </div>
+            <div class="card card-image">
+              <div class="card-pixel-placeholder" data-pixel-placeholder>⌨️</div>
+              <div class="card-content">
+                <div class="card-title">tmux</div>
+                <div class="card-body">Terminal multiplexer — manage multiple sessions, windows, and panes.</div>
+              </div>
+            </div>
+            <div class="card card-image">
+              <div class="card-pixel-placeholder" data-pixel-placeholder>📡</div>
+              <div class="card-content">
+                <div class="card-title">neovim</div>
+                <div class="card-body">Hyperextensible Vim-based text editor with Lua scripting support.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ═══════════════════════════════════════════════════════
          DETAILS / SUMMARY
          ═══════════════════════════════════════════════════════ -->
     <section class="showcase-section">
-      <span class="showcase-label">Interactive</span>
-      <h2>Details / Summary</h2>
+      <div class="showcase-label">Interactive</div>
       <details>
         <summary>Click to expand — System Requirements</summary>
         <p>You'll need the following to get started:</p>
@@ -399,199 +642,57 @@ volumes:
       </details>
       <details>
         <summary>Environment Variables</summary>
-        <pre><code>DATABASE_URL=postgres://localhost:5432/myapp
-REDIS_URL=redis://localhost:6379
-PORT=8080
-NODE_ENV=production</code></pre>
+        <pre><code><span class="token-variable">DATABASE_URL</span>=<span class="token-string">postgres://localhost:5432/myapp</span>
+<span class="token-variable">REDIS_URL</span>=<span class="token-string">redis://localhost:6379</span>
+<span class="token-variable">PORT</span>=<span class="token-number">8080</span>
+<span class="token-variable">NODE_ENV</span>=<span class="token-string">production</span></code></pre>
       </details>
     </section>
 
-    <hr class="dot-fill">
+    <div class="hr-label">blog post metadata</div>
 
     <!-- ═══════════════════════════════════════════════════════
-         COMPONENTS
-         ═══════════════════════════════════════════════════════ -->
-    <section class="showcase-section" id="components">
-      <span class="showcase-label">Components</span>
-      <h2>Buttons</h2>
-      <div class="btn-row">
-        <button class="btn">Default</button>
-        <button class="btn btn-primary">Primary</button>
-        <button class="btn btn-ghost">Ghost</button>
-        <button class="btn btn-sm">Small</button>
-        <a href="#" class="btn">Link Button</a>
-        <a href="#" class="btn btn-primary arrow">Get Started</a>
-      </div>
-    </section>
-
-    <section class="showcase-section">
-      <h2>Badges</h2>
-      <div class="badge-row">
-        <span class="badge badge-primary">Primary</span>
-        <span class="badge badge-success">Success</span>
-        <span class="badge badge-info">Info</span>
-        <span class="badge badge-warning">Warning</span>
-        <span class="badge badge-danger">Danger</span>
-        <span class="badge badge-purple">Purple</span>
-      </div>
-      <p style="margin-top: var(--ds-space-4);">Used for category tags like PlanetScale's blog: <span class="badge badge-info">Engineering</span> <span class="badge badge-success">Product</span> <span class="badge badge-purple">Tutorials</span></p>
-    </section>
-
-    <section class="showcase-section">
-      <h2>Callouts</h2>
-      <div class="callout callout-note">
-        <div class="callout-title">Note</div>
-        <p>This design system uses <code>color-mix()</code> in oklch for derived colors. This is a Baseline 2023 feature supported in all modern browsers.</p>
-      </div>
-      <div class="callout callout-tip">
-        <div class="callout-title">Tip</div>
-        <p>Change only <code>--ds-primary</code> and <code>--ds-secondary</code> in <code>tokens.css</code> to re-theme the entire system.</p>
-      </div>
-      <div class="callout callout-warning">
-        <div class="callout-title">Warning</div>
-        <p>Using <code>@import</code> in production may cause render-blocking cascaded requests. Concatenate or bundle for production use.</p>
-      </div>
-      <div class="callout callout-caution">
-        <div class="callout-title">Caution</div>
-        <p>Overriding base element styles with framework-specific resets may cause conflicts. Load <code>utc-ds.css</code> after your framework's reset.</p>
-      </div>
-    </section>
-
-    <section class="showcase-section">
-      <h2>Cards</h2>
-      <div class="card-grid">
-        <div class="card">
-          <h4 style="margin-top: 0;">docker-compose</h4>
-          <p>Multi-container orchestration tool for defining and running applications.</p>
-          <span class="badge badge-info">DevOps</span>
-        </div>
-        <div class="card">
-          <h4 style="margin-top: 0;">tmux</h4>
-          <p>Terminal multiplexer — manage multiple sessions, windows, and panes.</p>
-          <span class="badge badge-success">Terminal</span>
-        </div>
-        <div class="card">
-          <h4 style="margin-top: 0;">neovim</h4>
-          <p>Hyperextensible Vim-based text editor with Lua scripting support.</p>
-          <span class="badge badge-purple">Editor</span>
-        </div>
-      </div>
-    </section>
-
-    <hr>
-
-    <!-- ═══════════════════════════════════════════════════════
-         TERMINAL & ASCII
-         ═══════════════════════════════════════════════════════ -->
-    <section class="showcase-section" id="terminal">
-      <span class="showcase-label">Terminal &amp; ASCII</span>
-      <h2>Terminal Block</h2>
-      <div class="terminal">
-        <div class="terminal-header">
-          <span class="terminal-dot"></span>
-          <span class="terminal-dot"></span>
-          <span class="terminal-dot"></span>
-          <span class="terminal-title">~/projects/utc-ds</span>
-        </div>
-        <div class="terminal-body">
-          <div class="prompt">git status</div>
-          <div class="output">On branch main
-Your branch is up to date with 'origin/main'.
-
-Changes to be committed:
-  new file:   tokens.css
-  new file:   base.css
-  new file:   components.css
-  new file:   utc-ds.css
-  new file:   index.html</div>
-          <br>
-          <div class="prompt">wc -l *.css *.html</div>
-          <div class="output">   150 tokens.css
-   608 base.css
-   672 components.css
-    17 utc-ds.css
-   450 index.html
-  1897 total</div>
-        </div>
-      </div>
-
-      <h2>ASCII Diagram</h2>
-      <pre class="ascii">
-┌─────────────────────────────────────────────────────┐
-│                    <span class="highlight">utc-ds</span>                          │
-│                                                     │
-│   ┌──────────┐   ┌──────────┐   ┌──────────┐       │
-│   │<span class="highlight"> tokens </span>  │──▶│<span class="highlight">  base  </span>  │   │<span class="highlight">  comps </span>  │       │
-│   │  .css    │   │  .css    │   │  .css    │       │
-│   └──────────┘   └──────────┘   └──────────┘       │
-│        │              │              │              │
-│        ▼              ▼              ▼              │
-│   ┌─────────────────────────────────────────┐       │
-│   │           <span class="highlight">utc-ds.css</span>                   │       │
-│   │         (entry point)                   │       │
-│   └─────────────────────────────────────────┘       │
-│        │                                            │
-│        ▼                                            │
-│   ┌─────────────────────────────────────────┐       │
-│   │        Your Project / Website            │       │
-│   │   <span class="dim">&lt;link rel="stylesheet"</span>                │       │
-│   │   <span class="dim">      href="utc-ds.css"&gt;</span>              │       │
-│   └─────────────────────────────────────────┘       │
-└─────────────────────────────────────────────────────┘
-      </pre>
-
-      <h3>Architecture Flow</h3>
-      <pre class="ascii">
-  <span class="highlight">Request</span>                    <span class="highlight">Response</span>
-    │                          ▲
-    ▼                          │
-┌────────┐  ┌────────┐  ┌────────┐
-│<span class="highlight"> Nginx</span>  │─▶│<span class="highlight">  App </span>  │─▶│<span class="highlight">  DB  </span>  │
-│  :80   │  │  :3000 │  │  :5432 │
-└────────┘  └────────┘  └────────┘
-    │            │
-    ▼            ▼
-┌────────┐  ┌────────┐
-│<span class="highlight"> Redis</span>  │  │<span class="highlight"> S3   </span>  │
-│  :6379 │  │ bucket │
-└────────┘  └────────┘
-      </pre>
-    </section>
-
-    <hr class="dot-fill">
-
-    <!-- ═══════════════════════════════════════════════════════
-         METADATA LINE
+         BLOG POST METADATA
          ═══════════════════════════════════════════════════════ -->
     <section class="showcase-section">
-      <span class="showcase-label">Metadata Patterns</span>
-      <h2>Blog Post Metadata</h2>
-      <p>PlanetScale-style author + date + category lines:</p>
+      <div class="showcase-label">Blog Post Metadata</div>
 
-      <div style="border: 1px dashed var(--ds-border-strong); padding: var(--ds-space-4); margin-bottom: var(--ds-space-4);">
-        <h3 style="margin-top: 0;"><a href="#" style="text-decoration: none;">Building a Design System from Scratch</a></h3>
-        <div class="meta">
-          <a href="#">Utkarsh Chourasia</a>
-          <a href="#" class="handle">[@utc]</a>
-          <span class="sep">|</span>
-          <time>May 30, 2026</time>
-          <span class="sep">|</span>
-          <span class="badge badge-info">Engineering</span>
+      <div class="stack-6">
+        <div class="card">
+          <div class="card-title" style="font-size: var(--ds-text-lg);"><a href="#" style="text-decoration: none; color: var(--ds-text-primary);">Building a Design System from Scratch</a></div>
+          <div class="meta" style="margin-top: var(--ds-space-2);">
+            <a href="#">Utkarsh Chourasia</a>
+            <a href="#" class="handle">[@utc]</a>
+            <span class="sep">|</span>
+            <time>May 30, 2026</time>
+            <span class="sep">|</span>
+            <span class="badge badge-info">Engineering</span>
+          </div>
+          <div class="card-body" style="margin-top: var(--ds-space-3);">
+            How we built a terminal-inspired design system with zero JavaScript and pure CSS custom properties.
+          </div>
+          <div style="margin-top: var(--ds-space-3);">
+            <a href="#" class="btn btn-ghost btn-sm arrow">Read more</a>
+          </div>
         </div>
-        <p style="margin-top: var(--ds-space-2);">How we built a terminal-inspired design system with zero JavaScript and pure CSS custom properties. <a href="#" class="arrow">Read more</a></p>
-      </div>
 
-      <div style="border: 1px dashed var(--ds-border-strong); padding: var(--ds-space-4);">
-        <h3 style="margin-top: 0;"><a href="#" style="text-decoration: none;">Docker Networking Deep Dive</a></h3>
-        <div class="meta">
-          <a href="#">Utkarsh Chourasia</a>
-          <a href="#" class="handle">[@utc]</a>
-          <span class="sep">|</span>
-          <time>April 15, 2026</time>
-          <span class="sep">|</span>
-          <span class="badge badge-purple">Tutorials</span>
+        <div class="card">
+          <div class="card-title" style="font-size: var(--ds-text-lg);"><a href="#" style="text-decoration: none; color: var(--ds-text-primary);">Docker Networking Deep Dive</a></div>
+          <div class="meta" style="margin-top: var(--ds-space-2);">
+            <a href="#">Utkarsh Chourasia</a>
+            <a href="#" class="handle">[@utc]</a>
+            <span class="sep">|</span>
+            <time>April 15, 2026</time>
+            <span class="sep">|</span>
+            <span class="badge badge-purple">Tutorials</span>
+          </div>
+          <div class="card-body" style="margin-top: var(--ds-space-3);">
+            Understanding bridge networks, overlay networks, and DNS resolution in Docker.
+          </div>
+          <div style="margin-top: var(--ds-space-3);">
+            <a href="#" class="btn btn-ghost btn-sm arrow">Read more</a>
+          </div>
         </div>
-        <p style="margin-top: var(--ds-space-2);">Understanding bridge networks, overlay networks, and DNS resolution in Docker. <a href="#" class="arrow">Read more</a></p>
       </div>
     </section>
 
@@ -604,24 +705,24 @@ Changes to be committed:
     <div class="footer-grid">
       <div class="footer-col">
         <h3>Projects</h3>
-        <a href="#">Project Alpha</a>
-        <a href="#">CLI Tool</a>
-        <a href="#">Docker Image</a>
+        <a href="#">devtools-cli</a>
+        <a href="#">pg-migrate</a>
+        <a href="#">log-viewer</a>
         <a href="#">VS Code Theme</a>
       </div>
       <div class="footer-col">
-        <h3>Resources</h3>
-        <a href="#">Documentation</a>
-        <a href="#">Blog</a>
+        <h3>Writing</h3>
+        <a href="#">Docker deep dives</a>
+        <a href="#">Go patterns</a>
+        <a href="#">Linux internals</a>
         <a href="#">Changelog</a>
-        <a href="#">RSS Feed</a>
       </div>
       <div class="footer-col">
         <h3>Connect</h3>
         <a href="#">GitHub</a>
         <a href="#">Twitter / X</a>
         <a href="#">LinkedIn</a>
-        <a href="#">Email</a>
+        <a href="#">RSS Feed</a>
       </div>
       <div class="footer-col">
         <h3>More</h3>
@@ -632,18 +733,12 @@ Changes to be committed:
       </div>
     </div>
     <div class="footer-bottom">
-      <p>
-        <a href="#">Privacy</a>
-        <span class="sep">|</span>
-        <a href="#">Terms</a>
-        <span class="sep">|</span>
-        <a href="#">Colophon</a>
-      </p>
       <p>© 2026 Utkarsh Chourasia. Built with utc-ds.</p>
+      <p style="text-align: right;">design-system v1.0</p>
     </div>
   </footer>
 
-  <!-- Minimal JS: hamburger toggle + theme toggle -->
+  <!-- Minimal JS: hamburger toggle + theme toggle + terminal copy -->
   <script>
     // Hamburger menu toggle
     const hamburger = document.getElementById('hamburger-btn');
@@ -671,6 +766,33 @@ Changes to be committed:
     // Restore saved theme
     const saved = localStorage.getItem('utc-ds-theme');
     if (saved) html.setAttribute('data-theme', saved);
+
+    // Terminal copy buttons
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const text = btn.getAttribute('data-copy');
+        try {
+          await navigator.clipboard.writeText(text);
+          btn.textContent = 'copied!';
+          btn.classList.add('copied');
+          setTimeout(() => {
+            btn.textContent = 'copy';
+            btn.classList.remove('copied');
+          }, 2000);
+        } catch {
+          btn.textContent = 'failed';
+          setTimeout(() => { btn.textContent = 'copy'; }, 2000);
+        }
+      });
+    });
+
+    // Pixel-art placeholder: randomly assign game-pixel emoji
+    const pixelEmojis = ['🖥️', '⌨️', '🎮', '📡', '🔧', '⚙️', '🧩', '📦', '🗄️', '💾', '🔌', '🛠️'];
+    document.querySelectorAll('[data-pixel-placeholder]').forEach(el => {
+      if (!el.textContent.trim()) {
+        el.textContent = pixelEmojis[Math.floor(Math.random() * pixelEmojis.length)];
+      }
+    });
   </script>
 
 </body>

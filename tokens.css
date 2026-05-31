@@ -10,8 +10,8 @@
      USER-CONFIGURABLE: Set your brand colors here.
      Everything else is auto-derived.
      ────────────────────────────────────────────────────────── */
-  --ds-primary: #f15817;
-  --ds-secondary: #47b7f8;
+  --ds-primary: #ff5f00;
+  --ds-secondary: #afd7ff;
 
   /* ──────────────────────────────────────────────────────────
      DERIVED: Primary variants (auto-generated via color-mix)
@@ -60,14 +60,16 @@
   --ds-success: #22a652;
   --ds-info: var(--ds-secondary);
   --ds-warning: #f5a623;
-  --ds-danger: #c11027;
-  --ds-purple: #a855f7;
+  --ds-danger: #ff0000;
+  --ds-purple: #af00d7;
+  --ds-pink: #ffd7ff;
 
   --ds-success-muted: color-mix(in oklch, var(--ds-success) 12%, transparent);
   --ds-info-muted: color-mix(in oklch, var(--ds-info) 12%, transparent);
   --ds-warning-muted: color-mix(in oklch, var(--ds-warning) 12%, transparent);
   --ds-danger-muted: color-mix(in oklch, var(--ds-danger) 12%, transparent);
   --ds-purple-muted: color-mix(in oklch, var(--ds-purple) 12%, transparent);
+  --ds-pink-muted: color-mix(in oklch, var(--ds-pink) 12%, transparent);
 
   /* ──────────────────────────────────────────────────────────
      TYPOGRAPHY
