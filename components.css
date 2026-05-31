@@ -380,20 +380,20 @@
 /* Image card layout — internal flex wrapper for emoji and content */
 .card-image-layout {
   display: flex;
-  align-items: flex-start;
-  gap: var(--ds-space-4);
+  align-items: center;
+  gap: var(--ds-space-6);
 }
 
-/* Pixel art emoji — small square on the left */
+/* Pixel art emoji — icon square on the left */
 .card-pixel-placeholder {
-  width: 48px;
-  height: 48px;
-  min-width: 48px;
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
   background: var(--ds-bg-tertiary);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 2rem;
   border-radius: var(--ds-radius);
   border: 1px dashed var(--ds-border);
   user-select: none;
@@ -403,6 +403,16 @@
 .card-image-layout .card-content {
   flex: 1;
   min-width: 0;
+}
+
+/* Tighter gap before footer inside image-layout cards */
+.card-image-layout + .card-footer {
+  padding-top: var(--ds-space-3);
+  margin-top: var(--ds-space-3);
+}
+
+.card:has(.card-image-layout) > *:has(+ .card-footer) {
+  margin-bottom: 0;
 }
 
 /* Blog Post Card — fully redirectable */
