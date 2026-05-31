@@ -238,15 +238,22 @@
     <nav class="nav" id="main-nav">
       <div class="nav-inner container">
         <a class="nav-brand" href="#"><span class="nav-prefix">~/</span>utc-ds</a>
-        <button aria-label="Toggle navigation" class="hamburger" id="hamburger-btn">
-        </button>
+        <div class="nav-actions">
+          <button aria-label="Toggle dark/light theme" class="theme-toggle" id="theme-toggle"><span
+              class="theme-icon">◐</span></button>
+          <button aria-label="Toggle navigation" class="hamburger" id="hamburger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
         <div class="nav-links" id="nav-links">
           <a class="nav-link" href="#colors">Colors</a>
           <span class="nav-sep">|</span>
           <a class="nav-link" href="#typography">Typography</a>
           <span class="nav-sep">|</span>
           <div class="dropdown">
-            <a class="nav-link" href="#terminal">Terminal ▾</a>
+            <a class="nav-link dropdown-toggle" href="#terminal">Terminal ▾</a>
             <div class="dropdown-content">
               <a class="dropdown-item" href="#terminal">code blocks</a>
               <a class="dropdown-item" href="#dividers">dividers</a>
@@ -257,7 +264,7 @@
           </div>
           <span class="nav-sep">|</span>
           <div class="dropdown">
-            <a class="nav-link" href="#buttons">Components ▾</a>
+            <a class="nav-link dropdown-toggle" href="#buttons">Components ▾</a>
             <div class="dropdown-content">
               <a class="dropdown-item" href="#buttons">buttons</a>
               <a class="dropdown-item" href="#badges">badges</a>
@@ -269,8 +276,6 @@
           </div>
           <span class="nav-sep">|</span>
           <a class="nav-link" href="#footer">Footer</a>
-          <button aria-label="Toggle dark/light theme" class="theme-toggle" id="theme-toggle"><span
-              class="theme-icon">◐</span></button>
         </div>
       </div>
     </nav>
@@ -1017,6 +1022,26 @@ docker push <span class="token-variable">$REGISTRY</span>/<span class="token-var
       hamburger.addEventListener('click', () => {
         navLinks.classList.toggle('open');
         hamburger.classList.toggle('open');
+      });
+
+      // Mobile dropdown toggles — click to expand/collapse submenus
+      const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+      document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+          if (!isMobile()) return; // let desktop hover behavior work
+          e.preventDefault();
+          const dropdown = toggle.closest('.dropdown');
+          dropdown.classList.toggle('open');
+        });
+      });
+
+      // Close mobile menu when a nav link is clicked
+      navLinks.querySelectorAll('a:not(.dropdown-toggle)').forEach(link => {
+        link.addEventListener('click', () => {
+          if (!isMobile()) return;
+          navLinks.classList.remove('open');
+          hamburger.classList.remove('open');
+        });
       });
 
       // Theme toggle (dark ↔ light)

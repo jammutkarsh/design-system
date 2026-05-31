@@ -212,7 +212,15 @@
  *
  * When the nav is toggled open the links drop down in a terminal-style
  * dashed-border container. Each link gets a `> ` prompt prefix.
+ * Positioned on `.nav` (not `.nav-inner`) so it spans full viewport width.
  * ------------------------------------------------------------------------ */
+
+/* Nav actions: theme toggle + hamburger grouped together */
+.nav-actions {
+  display: none; /* Hidden on desktop */
+  align-items: center;
+  gap: var(--ds-space-2);
+}
 
 .nav-links.open {
   display: flex;
@@ -895,16 +903,116 @@
  * ------------------------------------------------------------------------ */
 
 @media (max-width: 768px) {
-  /* Show hamburger, hide desktop nav links */
+  /* ── Hamburger: show on mobile ── */
   .hamburger               { display: flex; }
   .nav-links:not(.open)    { display: none; }
   .nav-links .nav-sep      { display: none; }
 
-  /* Collapse grids */
+  /* ── Mobile Menu: full-width, left-aligned ── */
+  .nav-links.open {
+    align-items: flex-start;
+    padding: var(--ds-space-4);
+  }
+
+  .nav-links.open .nav-link {
+    width: 100%;
+    text-align: left;
+    padding: var(--ds-space-2) var(--ds-space-3);
+  }
+
+  /* Dropdowns inside mobile menu — static, no hover popup */
+  .nav-links.open .dropdown {
+    position: static;
+    display: block;
+    width: 100%;
+  }
+
+  .nav-links.open .dropdown .nav-link {
+    width: 100%;
+  }
+
+  .nav-links.open .dropdown-content {
+    display: block;
+    position: static;
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    min-width: 0;
+    padding-left: var(--ds-space-6);
+  }
+
+  .nav-links.open .dropdown-content::before {
+    display: none;
+  }
+
+  .nav-links.open .dropdown-item {
+    padding: var(--ds-space-1) var(--ds-space-3);
+    color: var(--ds-text-secondary);
+  }
+
+  .nav-links.open .dropdown-item::before {
+    content: '› ';
+    color: var(--ds-text-tertiary);
+    font-family: var(--ds-font-mono);
+  }
+
+  /* Theme toggle in mobile menu */
+  .nav-links.open .theme-toggle {
+    margin-top: var(--ds-space-2);
+  }
+
+  /* ── Collapse all grids to single column ── */
   .footer-grid { grid-template-columns: repeat(2, 1fr); }
   .card-grid   { grid-template-columns: 1fr; }
+  .grid-2      { grid-template-columns: 1fr; }
+  .grid-3      { grid-template-columns: 1fr; }
 
-  /* Scale down large type */
+  /* ── Card footer: stack tags + action vertically ── */
+  .card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--ds-space-2);
+  }
+
+  /* ── Cards with emoji: prevent overflow ── */
+  .card-image-layout {
+    gap: var(--ds-space-3);
+  }
+
+  .card-pixel-placeholder {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    font-size: 1.5rem;
+  }
+
+  /* ── Tables: horizontal scroll wrapper ── */
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ── ASCII diagrams: constrain width ── */
+  .ascii {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  /* ── Code blocks: ensure scroll ── */
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  /* ── Terminal body: ensure scroll ── */
+  .terminal-body {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  /* ── Scale down large type ── */
   :root {
     --ds-text-4xl: 1.875rem;
     --ds-text-5xl: 2.25rem;
