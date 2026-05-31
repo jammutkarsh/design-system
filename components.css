@@ -82,6 +82,8 @@
   display: flex;
   align-items: center;
   gap: 0;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .nav-brand .nav-prefix {
@@ -215,12 +217,6 @@
  * Positioned on `.nav` (not `.nav-inner`) so it spans full viewport width.
  * ------------------------------------------------------------------------ */
 
-/* Nav actions: theme toggle + hamburger grouped together */
-.nav-actions {
-  display: none; /* Hidden on desktop */
-  align-items: center;
-  gap: var(--ds-space-2);
-}
 
 .nav-links.open {
   display: flex;
@@ -463,11 +459,19 @@
 
 
 /* --------------------------------------------------------------------------
- * 7. Badges
+ * 7. Badges & Tags
  *
  * Bracket-wrapped labels: [Engineering], [Product], etc.
  * Colour variants match the semantic palette.
  * ------------------------------------------------------------------------ */
+
+/* Card Tags Container */
+.card-tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--ds-space-2);
+}
 
 .badge {
   font-family: var(--ds-font-mono);
@@ -904,14 +908,18 @@
 
 @media (max-width: 768px) {
   /* ── Hamburger: show on mobile ── */
-  .hamburger               { display: flex; }
-  .nav-links:not(.open)    { display: none; }
-  .nav-links .nav-sep      { display: none; }
+  .hamburger                { display: flex; }
+  .nav-links:not(.open)     { display: none; }
+  .nav-links .nav-sep       { display: none; }
 
-  /* ── Mobile Menu: full-width, left-aligned ── */
+  /* ── Mobile Menu: full viewport width, left-aligned ── */
   .nav-links.open {
     align-items: flex-start;
     padding: var(--ds-space-4);
+    /* Break out of .nav-inner container to span full viewport width */
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .nav-links.open .nav-link {
@@ -920,7 +928,7 @@
     padding: var(--ds-space-2) var(--ds-space-3);
   }
 
-  /* Dropdowns inside mobile menu — static, no hover popup */
+  /* Dropdowns inside mobile menu — static layout, collapsed by default */
   .nav-links.open .dropdown {
     position: static;
     display: block;
@@ -931,8 +939,9 @@
     width: 100%;
   }
 
+  /* Sub-items hidden by default on mobile */
   .nav-links.open .dropdown-content {
-    display: block;
+    display: none;
     position: static;
     background: none;
     border: none;
@@ -940,6 +949,11 @@
     padding: 0;
     min-width: 0;
     padding-left: var(--ds-space-6);
+  }
+
+  /* Show sub-items only when dropdown is toggled open via JS */
+  .nav-links.open .dropdown.open .dropdown-content {
+    display: block;
   }
 
   .nav-links.open .dropdown-content::before {
@@ -952,7 +966,7 @@
   }
 
   .nav-links.open .dropdown-item::before {
-    content: '› ';
+    content: '\203A '; /* › */
     color: var(--ds-text-tertiary);
     font-family: var(--ds-font-mono);
   }
@@ -987,12 +1001,7 @@
     font-size: 1.5rem;
   }
 
-  /* ── Tables: horizontal scroll wrapper ── */
-  table {
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
+
 
   /* ── ASCII diagrams: constrain width ── */
   .ascii {
@@ -1020,7 +1029,7 @@
 }
 
 @media (min-width: 769px) {
-  /* Force desktop layout regardless of JS state */
-  .hamburger  { display: none !important; }
-  .nav-links  { display: flex !important; }
+  /* Force desktop layout — hide hamburger, show links */
+  .hamburger    { display: none !important; }
+  .nav-links    { display: flex !important; }
 }

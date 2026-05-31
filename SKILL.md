@@ -159,8 +159,10 @@ All hover, muted, active, and subtle variants auto-derive via `color-mix()`.
   <div class="card-title">Title</div>
   <div class="card-body">Description</div>
   <div class="card-footer">
-    <span class="badge badge-success">running</span>
     <a href="#" class="btn btn-ghost btn-sm arrow">View</a>
+    <div class="card-tags">
+      <span class="badge badge-success">running</span>
+    </div>
   </div>
 </div>
 

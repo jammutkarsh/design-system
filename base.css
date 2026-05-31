@@ -421,6 +421,12 @@ pre code {
    10. TABLES
    ──────────────────────────────────────────────────────────── */
 
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -438,12 +444,14 @@ th {
   font-size: var(--ds-text-xs);
   text-transform: uppercase;
   letter-spacing: var(--ds-tracking-wide);
+  white-space: nowrap;
 }
 
 td {
   padding: var(--ds-space-2) var(--ds-space-3);
   border-bottom: 1px solid var(--ds-border);
   color: var(--ds-text-secondary);
+  white-space: nowrap;
 }
 
 tr:hover {

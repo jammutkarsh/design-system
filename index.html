@@ -144,9 +144,11 @@
         height: 15px;
       }
 
-      .dropdown:hover .dropdown-content,
-      .dropdown:focus-within .dropdown-content {
-        display: block;
+      @media (hover: hover) {
+        .dropdown:hover .dropdown-content,
+        .dropdown:focus-within .dropdown-content {
+          display: block;
+        }
       }
 
       .dropdown-item {
@@ -238,15 +240,11 @@
     <nav class="nav" id="main-nav">
       <div class="nav-inner container">
         <a class="nav-brand" href="#"><span class="nav-prefix">~/</span>utc-ds</a>
-        <div class="nav-actions">
-          <button aria-label="Toggle dark/light theme" class="theme-toggle" id="theme-toggle"><span
-              class="theme-icon">◐</span></button>
-          <button aria-label="Toggle navigation" class="hamburger" id="hamburger-btn">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
+        <button aria-label="Toggle navigation" class="hamburger" id="hamburger-btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
         <div class="nav-links" id="nav-links">
           <a class="nav-link" href="#colors">Colors</a>
           <span class="nav-sep">|</span>
@@ -276,6 +274,11 @@
           </div>
           <span class="nav-sep">|</span>
           <a class="nav-link" href="#footer">Footer</a>
+          <span class="nav-sep">|</span>
+          <a class="nav-link" href="https://github.com/jammutkarsh/design-system" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <span class="nav-sep">|</span>
+          <button aria-label="Toggle dark/light theme" class="theme-toggle" id="theme-toggle"><span
+              class="theme-icon">◐</span></button>
         </div>
       </div>
     </nav>
@@ -291,7 +294,7 @@
         <p class="lead" style="max-width: 600px; margin-top: var(--ds-space-6);">A terminal-native visual language for
           developers who live in the dark. Built around monospace type, structural honesty, and zero decoration.</p>
         <div class="row" style="margin-top: var(--ds-space-8);">
-          <a class="btn btn-primary" href="#">View source</a>
+          <a class="btn btn-primary" href="https://github.com/jammutkarsh/design-system" target="_blank" rel="noopener noreferrer">View source</a>
           <a class="btn btn-ghost arrow" href="#">Documentation</a>
         </div>
 
@@ -675,75 +678,79 @@ docker push <span class="token-variable">$REGISTRY</span>/<span class="token-var
         <div class="showcase-label">Table</div>
 
         <h3 style="margin-top: var(--ds-space-8);">Normal Table</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Command</th>
-              <th>Description</th>
-              <th>Example</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>docker ps</code></td>
-              <td>List running containers</td>
-              <td><code>docker ps -a</code></td>
-            </tr>
-            <tr>
-              <td><code>docker build</code></td>
-              <td>Build an image from Dockerfile</td>
-              <td><code>docker build -t app .</code></td>
-            </tr>
-            <tr>
-              <td><code>docker exec</code></td>
-              <td>Execute command in container</td>
-              <td><code>docker exec -it app sh</code></td>
-            </tr>
-            <tr>
-              <td><code>docker logs</code></td>
-              <td>Fetch container logs</td>
-              <td><code>docker logs -f app</code></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Command</th>
+                <th>Description</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>docker ps</code></td>
+                <td>List running containers</td>
+                <td><code>docker ps -a</code></td>
+              </tr>
+              <tr>
+                <td><code>docker build</code></td>
+                <td>Build an image from Dockerfile</td>
+                <td><code>docker build -t app .</code></td>
+              </tr>
+              <tr>
+                <td><code>docker exec</code></td>
+                <td>Execute command in container</td>
+                <td><code>docker exec -it app sh</code></td>
+              </tr>
+              <tr>
+                <td><code>docker logs</code></td>
+                <td>Fetch container logs</td>
+                <td><code>docker logs -f app</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <h3 style="margin-top: var(--ds-space-8);">Monospace Table</h3>
-        <table class="table-mono">
-          <thead>
-            <tr>
-              <th>Port</th>
-              <th>Service</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>22</td>
-              <td>SSH</td>
-              <td>●&nbsp;active</td>
-            </tr>
-            <tr>
-              <td>80</td>
-              <td>Nginx</td>
-              <td>●&nbsp;active</td>
-            </tr>
-            <tr>
-              <td>443</td>
-              <td>HTTPS</td>
-              <td>●&nbsp;active</td>
-            </tr>
-            <tr>
-              <td>5432</td>
-              <td>PostgreSQL</td>
-              <td>○&nbsp;stopped</td>
-            </tr>
-            <tr>
-              <td>6379</td>
-              <td>Redis</td>
-              <td>●&nbsp;active</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table-mono">
+            <thead>
+              <tr>
+                <th>Port</th>
+                <th>Service</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>22</td>
+                <td>SSH</td>
+                <td>●&nbsp;active</td>
+              </tr>
+              <tr>
+                <td>80</td>
+                <td>Nginx</td>
+                <td>●&nbsp;active</td>
+              </tr>
+              <tr>
+                <td>443</td>
+                <td>HTTPS</td>
+                <td>●&nbsp;active</td>
+              </tr>
+              <tr>
+                <td>5432</td>
+                <td>PostgreSQL</td>
+                <td>○&nbsp;stopped</td>
+              </tr>
+              <tr>
+                <td>6379</td>
+                <td>Redis</td>
+                <td>●&nbsp;active</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <!-- ═══════════════════════════════════════════════════════
@@ -853,22 +860,22 @@ docker push <span class="token-variable">$REGISTRY</span>/<span class="token-var
                 <h4>pg-backups</h4>
                 <p>Automated daily backups to S3 with point-in-time recovery. Retention: 30 days.</p>
                 <div class="card-footer">
-                  <div class="row">
+                  <a class="btn btn-ghost btn-sm arrow" href="#">View</a>
+                  <div class="card-tags">
                     <span class="badge badge-success">running</span>
                     <span class="badge badge-info">postgres</span>
                   </div>
-                  <a class="btn btn-ghost btn-sm arrow" href="#">View</a>
                 </div>
               </div>
               <div class="card">
                 <h4>redis-cluster</h4>
                 <p>Session cache and rate limiting. Three replicas across availability zones.</p>
                 <div class="card-footer">
-                  <div class="row">
+                  <a class="btn btn-ghost btn-sm arrow" href="#">View</a>
+                  <div class="card-tags">
                     <span class="badge badge-warning">degraded</span>
                     <span class="badge badge-info">redis</span>
                   </div>
-                  <a class="btn btn-ghost btn-sm arrow" href="#">View</a>
                 </div>
               </div>
             </div>
@@ -949,8 +956,10 @@ docker push <span class="token-variable">$REGISTRY</span>/<span class="token-var
             </div>
             <p>How we built a terminal-inspired design system with zero JavaScript and pure CSS custom properties.</p>
             <div class="card-footer">
-              <span class="badge badge-info">Engineering</span>
               <span class="btn btn-ghost btn-sm arrow">Read more</span>
+              <div class="card-tags">
+                <span class="badge badge-info">Engineering</span>
+              </div>
             </div>
           </div>
 
@@ -965,8 +974,10 @@ docker push <span class="token-variable">$REGISTRY</span>/<span class="token-var
             </div>
             <p>Understanding bridge networks, overlay networks, and DNS resolution in Docker.</p>
             <div class="card-footer">
-              <span class="badge badge-purple">Tutorials</span>
               <span class="btn btn-ghost btn-sm arrow">Read more</span>
+              <div class="card-tags">
+                <span class="badge badge-purple">Tutorials</span>
+              </div>
             </div>
           </div>
         </div>
@@ -995,7 +1006,7 @@ docker push <span class="token-variable">$REGISTRY</span>/<span class="token-var
         </div>
         <div class="footer-col">
           <h3>Connect</h3>
-          <a href="#">GitHub</a>
+          <a href="https://github.com/jammutkarsh/design-system" target="_blank" rel="noopener noreferrer">GitHub</a>
           <a href="#">Twitter / X</a>
           <a href="#">LinkedIn</a>
           <a href="#">RSS Feed</a>
@@ -1005,7 +1016,7 @@ docker push <span class="token-variable">$REGISTRY</span>/<span class="token-var
           <a href="#">Uses</a>
           <a href="#">Colophon</a>
           <a href="#">Design System</a>
-          <a href="#">Source Code</a>
+          <a href="https://github.com/jammutkarsh/design-system" target="_blank" rel="noopener noreferrer">Source Code</a>
         </div>
       </div>
       <div class="footer-bottom">
@@ -1042,6 +1053,17 @@ docker push <span class="token-variable">$REGISTRY</span>/<span class="token-var
           navLinks.classList.remove('open');
           hamburger.classList.remove('open');
         });
+      });
+
+      // Close mobile menu when clicking outside the nav
+      document.addEventListener('click', (e) => {
+        if (!isMobile() || !navLinks.classList.contains('open')) return;
+        const nav = document.getElementById('main-nav');
+        if (!nav.contains(e.target)) {
+          navLinks.classList.remove('open');
+          hamburger.classList.remove('open');
+          document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+        }
       });
 
       // Theme toggle (dark ↔ light)
