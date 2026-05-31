@@ -77,8 +77,10 @@ legend {
    ──────────────────────────────────────────────────────────── */
 
 html {
-  font-size: 100%;
+  /* Fluid typography: 16px base, scales up on screens >1200px, maxes at 24px */
+  font-size: clamp(100%, 1vw + 0.3rem, 150%);
   scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -183,8 +185,8 @@ p {
 
 /* Larger intro / lede paragraph */
 .lead {
-  font-size: var(--ds-text-lg);
-  color: var(--ds-text-secondary);
+  font-size: var(--ds-text-xl);
+  color: var(--ds-text-primary);
   line-height: var(--ds-leading);
 }
 
@@ -560,10 +562,14 @@ details {
   margin: var(--ds-space-4) 0;
   border: 1px dashed var(--ds-border-strong);
   border-radius: var(--ds-radius);
-  padding: 0;
+  padding: 0 var(--ds-space-4);
+}
+details[open] {
+  padding-bottom: var(--ds-space-4);
 }
 
 summary {
+  margin: 0 calc(-1 * var(--ds-space-4));
   padding: var(--ds-space-3) var(--ds-space-4);
   cursor: pointer;
   font-weight: var(--ds-weight-medium);
@@ -589,14 +595,8 @@ details[open] > summary::before {
 
 /* Add bottom border to summary when open for visual separation */
 details[open] > summary {
-  padding-bottom: var(--ds-space-4);
   border-bottom: 1px dashed var(--ds-border);
-  margin-bottom: 0;
-}
-
-/* Content area padding (everything except summary) */
-details > *:not(summary) {
-  padding: var(--ds-space-4) var(--ds-space-4) var(--ds-space-4);
+  margin-bottom: var(--ds-space-3);
 }
 
 

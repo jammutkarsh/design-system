@@ -1,19 +1,20 @@
 ---
 name: utc-ds
 description: |
-  Terminal-inspired design system for Utkarsh Chourasia's portfolio and project websites.
+  Terminal-inspired design system for portfolio and project websites.
   Use this skill whenever building or modifying any web page, component, or layout that should
   follow the utc-ds design language. This ensures visual consistency across all projects.
 ---
 
 # utc-ds Design System
 
-A dark-first, terminal-inspired design system built with pure CSS. Colors derived from Utkarsh's personal ZSH terminal theme. Inspired by PlanetScale and charmbracelet/glow.
+A dark-first, terminal-inspired design system built with pure CSS. Colors derived from a personal ZSH terminal theme. Inspired by PlanetScale and charmbracelet/glow.
 
 ## When to Use
 
 Apply this skill whenever you are:
-- Building a new page or component for any of Utkarsh's websites
+
+- Building a new page or component for any of your websites
 - Writing HTML/CSS that should match the portfolio aesthetic
 - Creating blog posts, documentation, or project pages
 - Modifying existing UI to align with the design system
@@ -22,15 +23,14 @@ Apply this skill whenever you are:
 
 1. **Dark-first** — `#0a0a0a` background, light text. Light mode via `[data-theme="light"]`
 2. **Content-first** — Typography is the hero. No flashy animations
-3. **Terminal-native** — Monospace accents, pipe `|` separators, dashed borders, bracket `[tags]`, `$ ` prompts, `~/` breadcrumbs
+3. **Terminal-native** — Monospace accents, pipe `|` separators, dashed borders, bracket `[tags]`, `$` prompts, `~/` breadcrumbs
 4. **Zero-animation** — CSS `transition` on hover only. No JS animations, no layout shifts
 5. **Token-driven** — All values via `var(--ds-*)`. Never use raw colors, sizes, or fonts
-6. **ZSH-themed colors** — Primary orange (#ff5f00), secondary light blue (#afd7ff), purple (#af00d7), pink (#ffd7ff) from Utkarsh's terminal theme
+6. **ZSH-themed colors** — Primary orange (#ff5f00), secondary light blue (#afd7ff), purple (#af00d7), pink (#ffd7ff) from a personal terminal theme
 
 ## File Structure
 
-```
-design-system/
+```bash
 ├── utc-ds.css      ← Import this one file (loads everything)
 ├── tokens.css      ← Design tokens (colors, fonts, spacing)
 ├── base.css        ← Semantic HTML element styles (classless)
@@ -60,8 +60,9 @@ All hover, muted, active, and subtle variants auto-derive via `color-mix()`.
 ## Design Tokens Reference
 
 ### Colors (from ZSH terminal theme)
+
 | Token | Value | ZSH Origin |
-|---|---|---|
+| --- | --- | --- |
 | `--ds-primary` | `#ff5f00` | ANSI 202 — directory background |
 | `--ds-secondary` | `#afd7ff` | ANSI 153 — success prompt (ƛ) |
 | `--ds-purple` | `#af00d7` | ANSI 128 — username background |
@@ -78,8 +79,9 @@ All hover, muted, active, and subtle variants auto-derive via `color-mix()`.
 | `--ds-border-strong` | `#333333` | Dashed borders, strong separators |
 
 ### Typography
+
 | Token | Value |
-|---|---|
+| --- | --- | --- |
 | `--ds-font-sans` | Inter (headings, body) |
 | `--ds-font-mono` | JetBrains Mono (code, terminal, decorative) |
 | `--ds-text-base` | 1rem (16px) |
@@ -87,6 +89,7 @@ All hover, muted, active, and subtle variants auto-derive via `color-mix()`.
 | `--ds-leading-tight` | 1.2 (headings) |
 
 ### Heading Style
+
 - h1: `text-5xl`, weight `300`, letter-spacing `-0.04em` (large, light)
 - h2: `text-3xl`, weight `300`, dashed bottom border
 - h3-h5: `text-2xl` to `text-lg`, weight `medium`
@@ -94,31 +97,43 @@ All hover, muted, active, and subtle variants auto-derive via `color-mix()`.
 - **No `#` prefix** — clean headings without markdown markers
 
 ### Spacing
+
 4px grid: `--ds-space-1` (4px) through `--ds-space-24` (96px).
 
 ### Layout
+
 | Token | Value |
-|---|---|
+| --- | --- | --- |
 | `--ds-max-width` | 72rem (1152px) |
 | `--ds-content-width` | 48rem (768px) — prose width |
 
 ## Component Quick Reference
 
-### Navigation (with `~/` breadcrumb)
+### Navigation (with dynamic path and dropdowns)
+
 ```html
 <nav class="nav">
   <div class="nav-inner container">
-    <a href="/" class="nav-brand"><span class="nav-prefix">~/</span>site-name</a>
+    <a href="/" class="nav-brand"><span class="nav-prefix">~/</span><span id="nav-brand-path">site-name</span></a>
     <div class="nav-links">
-      <a href="/about" class="nav-link">About</a>
+      <div class="nav-item dropdown">
+        <a href="#work" class="nav-link">Work</a>
+        <div class="dropdown-content">
+          <a href="#project-1" class="dropdown-link">Project 1</a>
+          <a href="#project-2" class="dropdown-link">Project 2</a>
+        </div>
+      </div>
       <span class="nav-sep">|</span>
-      <a href="/blog" class="nav-link">Blog</a>
+      <div class="nav-item">
+        <a href="#about" class="nav-link">About</a>
+      </div>
     </div>
   </div>
 </nav>
 ```
 
 ### Breadcrumb (terminal-style path)
+
 ```html
 <div class="breadcrumb">
   <span class="bc-home">~</span><span class="bc-sep">/</span>
@@ -128,6 +143,7 @@ All hover, muted, active, and subtle variants auto-derive via `color-mix()`.
 ```
 
 ### Buttons
+
 ```html
 <button class="btn">Default</button>
 <button class="btn btn-primary">Primary</button>
@@ -136,6 +152,7 @@ All hover, muted, active, and subtle variants auto-derive via `color-mix()`.
 ```
 
 ### Cards (3 variants)
+
 ```html
 <!-- Standard card with footer -->
 <div class="card">
@@ -161,6 +178,7 @@ All hover, muted, active, and subtle variants auto-derive via `color-mix()`.
 ```
 
 ### Badges (bracket-wrapped)
+
 ```html
 <span class="badge badge-primary">Primary</span>
 <span class="badge badge-success">Success</span>
@@ -171,6 +189,7 @@ All hover, muted, active, and subtle variants auto-derive via `color-mix()`.
 ```
 
 ### Callouts
+
 ```html
 <div class="callout callout-note">
   <div class="callout-title">Note</div>
@@ -180,6 +199,7 @@ All hover, muted, active, and subtle variants auto-derive via `color-mix()`.
 ```
 
 ### Terminal Block (with copy-on-hover)
+
 ```html
 <div class="terminal">
   <div class="terminal-header">
@@ -197,7 +217,9 @@ All hover, muted, active, and subtle variants auto-derive via `color-mix()`.
   </div>
 </div>
 ```
+
 JS needed for copy functionality:
+
 ```js
 document.querySelectorAll('.copy-btn').forEach(btn => {
   btn.addEventListener('click', async () => {
@@ -210,6 +232,7 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
 ```
 
 ### Blockquotes (with citation)
+
 ```html
 <blockquote>
   The best tools get out of your way.
@@ -218,6 +241,7 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
 ```
 
 ### Horizontal Rules
+
 ```html
 <hr>                          <!-- dashed (default) -->
 <hr class="dot-fill">          <!-- dotted pattern -->
@@ -226,6 +250,7 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
 ```
 
 ### Colored Code Blocks
+
 ```html
 <pre><code><span class="token-comment">// comment</span>
 <span class="token-keyword">func</span> <span class="token-function">main</span>() {
@@ -237,6 +262,7 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
 Token classes: `token-keyword`, `token-function`, `token-string`, `token-comment`, `token-type`, `token-number`, `token-operator`, `token-variable`, `token-builtin`
 
 ### Blog Post Metadata
+
 ```html
 <div class="card">
   <div class="card-title"><a href="#">Post Title</a></div>
@@ -254,9 +280,11 @@ Token classes: `token-keyword`, `token-function`, `token-string`, `token-comment
   </div>
 </div>
 ```
+
 **Note**: "Read more" goes on its own line, not inline with description.
 
 ### Footer
+
 ```html
 <footer class="footer container">
   <div class="footer-grid">
@@ -282,3 +310,5 @@ Token classes: `token-keyword`, `token-function`, `token-string`, `token-comment
 - Use `font-weight: bold` — use `var(--ds-weight-medium)` or `var(--ds-weight-semibold)`
 - Add `#` prefix markers to headings (removed from the design)
 - Put "Read more" links inline with blog descriptions (use a new line)
+- Forget to add `id` attributes to sections if you want them tracked by the dynamic nav path
+- Forget to account for the sticky nav height (using `scroll-padding-top: 4.5rem` on HTML)

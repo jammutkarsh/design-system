@@ -28,14 +28,15 @@ Open `index.html` in your browser to see every element and component in action.
 - **Derived color system** — Set `--ds-primary` and `--ds-secondary`, everything else auto-derives via `color-mix()`
 - **ZSH-themed palette** — Orange (#ff5f00), light blue (#afd7ff), purple (#af00d7) from a real terminal theme
 - **Dark + light modes** — Dark by default, light via `data-theme="light"` attribute
-- **Terminal-inspired components** — Pipe-separated nav with `~/` breadcrumb, dashed-border cards, bracket-wrapped `[badges]`, terminal blocks with copy-on-hover, ASCII diagrams
+- **Terminal-inspired components** — Pipe-separated nav with `~/` breadcrumb, dropdown menus, dashed-border cards, bracket-wrapped `[badges]`, terminal blocks with copy-on-hover, ASCII diagrams
+- **Dynamic Navigation** — IntersectionObserver automatically updates the navigation brand path based on the current scroll section, with `scroll-padding-top` handling sticky nav offsets
 - **Colored code blocks** — Syntax token classes for keywords, functions, strings, comments, etc.
-- **Zero JavaScript** — Pure CSS, no build step (tiny inline JS for theme toggle, hamburger, and copy buttons)
+- **Zero-build JavaScript** — Vanilla JS for theme toggle, dynamic nav routing, hamburger menus, and copy buttons
 - **Responsive** — Mobile-first with hamburger menu at 768px breakpoint
 
 ## File Structure
 
-```
+```bash
 design-system/
 ├── utc-ds.css          ← Main entry point (imports everything)
 ├── tokens.css          ← Design tokens (colors, fonts, spacing)
@@ -66,8 +67,8 @@ Toggle light mode:
 ## Components
 
 | Component | Class | Description |
-|---|---|---|
-| Navigation | `.nav` + `.nav-brand` | Pipe-separated sticky nav with `~/` prefix |
+| --- | --- | --- |
+| Navigation | `.nav`, `.nav-brand`, `.dropdown` | Pipe-separated sticky nav with `~/` prefix, dynamic path routing, and hover dropdowns |
 | Breadcrumb | `.breadcrumb` | Terminal-style path: `~/projects/name` |
 | Buttons | `.btn`, `.btn-primary`, `.btn-ghost` | Monospace terminal-style buttons |
 | Cards | `.card`, `.card-accent`, `.card-image` | 3 variants with title/body/footer areas |
@@ -90,6 +91,7 @@ Both loaded via Google Fonts in `utc-ds.css`.
 ## Browser Support
 
 Requires browsers supporting `color-mix()` in oklch (Baseline 2023):
+
 - Chrome 111+
 - Firefox 113+
 - Safari 16.2+
